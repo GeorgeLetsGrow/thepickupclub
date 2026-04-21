@@ -45,7 +45,7 @@ function OR_Dashboard({ theme: t, players, game, onCreate, onManage, onMessages,
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 18 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <IconBaseball size={22} style={{ color: t.accent }} />
-            <div style={{ fontFamily: t.display, fontSize: 15, letterSpacing: 2, textTransform: 'uppercase', color: t.ink }}>TheBaseballClub</div>
+            <div style={{ fontFamily: t.display, fontSize: 15, letterSpacing: 2, textTransform: 'uppercase', color: t.ink }}>The PickUp Club</div>
           </div>
           <Avatar name={game.host} color={game.hostAvatar} size={36} />
         </div>

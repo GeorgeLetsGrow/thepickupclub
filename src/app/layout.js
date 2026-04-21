@@ -13,8 +13,8 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: 'TheBaseballClub — Design Canvas',
-  description: 'Pickup baseball app design prototype',
+  title: 'The PickUp Club',
+  description: 'Pickup game app prototype',
 };
 
 export default function RootLayout({ children }) {

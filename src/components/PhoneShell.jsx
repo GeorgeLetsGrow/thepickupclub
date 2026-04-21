@@ -69,7 +69,7 @@ function FacebookChrome({ theme: t, onBack }) {
           <div style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontSize: 28, fontWeight: 800, color: '#1877f2', letterSpacing: -1 }}>f</div>
         )}
         <div style={{ flex: 1, height: 34, borderRadius: 17, background: '#e4e6eb', display: 'flex', alignItems: 'center', padding: '0 14px', fontSize: 13, color: '#65676b' }}>
-          facebook.com/thebaseballclub
+          facebook.com/thepickupclub
         </div>
         <div style={{ display: 'flex', gap: 4, color: '#65676b' }}><IconDots size={20} /></div>
       </div>

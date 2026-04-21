@@ -1339,7 +1339,7 @@ export function SocialShell({ activeTab = 'home' }) {
             <Link href="/" className="flex items-center gap-2">
               <IconBaseball size={18} />
               <span className="font-display text-sm font-semibold tracking-widest text-navy uppercase">
-                The<span className="text-red">Baseball</span>Club
+                The <span className="text-red">PickUp</span> Club
               </span>
             </Link>
             <HeaderActions />

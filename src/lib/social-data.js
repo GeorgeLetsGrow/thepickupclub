@@ -52,7 +52,7 @@ export const MOCK_ACTIVITY = [
 
 export const MOCK_REELS = [
   { id: 'r1', author: 'Derek W.',  authorColor: '#1e3a5f',
-    caption: 'Triple to right-center #theBaseballClub',
+    caption: 'Triple to right-center #ThePickUpClub',
     likes: 234, comments: 18, plays: '2.1K', label: 'TRIPLE TO THE GAP', bg: '#1e3a5f' },
   { id: 'r2', author: 'Marcus C.', authorColor: '#d97757',
     caption: 'Diving catch saves the inning',

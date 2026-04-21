@@ -1,7 +1,7 @@
 import { SocialShell } from '@/components/SocialShell';
 
 export const metadata = {
-  title: 'Home | TheBaseballClub',
+  title: 'Home | The PickUp Club',
   description: 'Your pickup baseball feed, upcoming games, activity, and highlights.',
 };
 

@@ -1,7 +1,7 @@
 import { SocialShell } from '@/components/SocialShell';
 
 export const metadata = {
-  title: 'Reel | TheBaseballClub',
+  title: 'Reel | The PickUp Club',
   description: 'Watch highlights and recaps from recent pickup baseball games.',
 };
 

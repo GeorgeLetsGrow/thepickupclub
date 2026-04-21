@@ -64,7 +64,7 @@ const MOCK_FEED = [
 
 const MOCK_REELS = [
   { id: 'r1', author: 'Derek W.', authorColor: '#1e3a5f',
-    caption: 'Triple to right-center #theBaseballClub',
+    caption: 'Triple to right-center #ThePickUpClub',
     likes: 234, comments: 18, plays: '2.1K',
     label: 'TRIPLE TO THE GAP', bg: '#1e3a5f', accent: '#c4302b' },
   { id: 'r2', author: 'Marcus C.', authorColor: '#d97757',
@@ -163,7 +163,7 @@ function HomeTab({ theme: t, onGameClick, onHostDashboard }) {
     <div style={{ flex: 1, overflowY: 'auto', paddingTop: 54 }}>
       <div style={{ padding: '10px 18px 8px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ fontFamily: t.display, fontSize: 24, fontWeight: 600, letterSpacing: -0.4, textTransform: 'uppercase', color: t.ink }}>
-          The<span style={{ color: t.accent }}>Baseball</span>Club
+          The <span style={{ color: t.accent }}>PickUp</span> Club
         </div>
         <div style={{ display: 'flex', gap: 6, color: t.ink }}>
           <IconBtn t={t}><IconBell size={22} /></IconBtn>

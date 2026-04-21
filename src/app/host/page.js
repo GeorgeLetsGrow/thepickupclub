@@ -64,7 +64,7 @@ export default function HostPage() {
 
   function handleShare() {
     if (typeof navigator !== 'undefined') {
-      navigator.clipboard.writeText('https://thebaseballclub.app/game/g-8429').catch(() => {});
+      navigator.clipboard.writeText('https://thepickupclub.app/game/g-8429').catch(() => {});
     }
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -92,7 +92,7 @@ export default function HostPage() {
           <Link href="/" className="flex items-center gap-2">
             <IconBaseball size={18} />
             <span className="font-display text-sm font-semibold tracking-widest text-navy uppercase leading-none">
-              The<span className="text-red">Baseball</span>Club
+              The <span className="text-red">PickUp</span> Club
             </span>
           </Link>
           <Link

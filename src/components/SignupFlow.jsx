@@ -67,7 +67,7 @@ function SU_Landing({ theme: t, game, players, onJoin, onOpenOrganizer, onBack }
           <div style={{ background: t.primary, color: t.primaryInk, padding: '14px 18px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <IconBaseball size={18} />
-              <div style={{ fontFamily: t.display, fontSize: 14, letterSpacing: 1.5, textTransform: 'uppercase' }}>TheBaseballClub</div>
+              <div style={{ fontFamily: t.display, fontSize: 14, letterSpacing: 1.5, textTransform: 'uppercase' }}>The PickUp Club</div>
             </div>
             <Chip theme={t} tone="accent" size="sm">${game.cost}</Chip>
           </div>

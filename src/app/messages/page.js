@@ -91,7 +91,7 @@ function MessagesContent() {
             </div>
             <Link href="/" className="hidden items-center gap-2 sm:flex">
               <IconBaseball size={16} />
-              <span className="font-display text-xs tracking-widest text-muted uppercase">TheBaseballClub</span>
+              <span className="font-display text-xs tracking-widest text-muted uppercase">The PickUp Club</span>
             </Link>
           </div>
         </header>

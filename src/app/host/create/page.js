@@ -189,7 +189,7 @@ export default function CreateGamePage() {
         <div className="flex items-center gap-1.5">
           <IconBaseball size={16} className="text-muted" />
           <span className="font-display text-xs tracking-widest text-muted uppercase hidden sm:block">
-            TheBaseballClub
+            The PickUp Club
           </span>
         </div>
       </header>
