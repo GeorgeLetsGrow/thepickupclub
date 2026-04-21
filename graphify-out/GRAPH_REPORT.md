@@ -1,12 +1,12 @@
 # Graph Report - C:\Users\gjram\sites\pickupgame-app  (2026-04-21)
 
 ## Corpus Check
-- 38 files · ~48,360 words
+- 38 files · ~49,089 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 210 nodes · 188 edges · 33 communities detected
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 4 edges (avg confidence: 0.8)
+- 213 nodes · 195 edges · 33 communities detected
+- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 5 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Community Hubs (Navigation)
@@ -45,16 +45,16 @@
 - [[_COMMUNITY_Community 32|Community 32]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `POST()` - 9 edges
-2. `validateProfile()` - 3 edges
-3. `initials()` - 3 edges
-4. `Avatar()` - 3 edges
-5. `createClient()` - 3 edges
-6. `middleware()` - 2 edges
-7. `normalizeContact()` - 2 edges
-8. `isEmail()` - 2 edges
-9. `passwordFromProfile()` - 2 edges
-10. `avatarFor()` - 2 edges
+1. `POST()` - 10 edges
+2. `createClient()` - 4 edges
+3. `validateProfile()` - 3 edges
+4. `initials()` - 3 edges
+5. `Avatar()` - 3 edges
+6. `hasSupabaseAuthEnv()` - 3 edges
+7. `middleware()` - 2 edges
+8. `normalizeContact()` - 2 edges
+9. `isEmail()` - 2 edges
+10. `passwordFromProfile()` - 2 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `POST()` --calls--> `hasDatabaseUrl()`  [INFERRED]
@@ -63,10 +63,10 @@
   C:\Users\gjram\sites\pickupgame-app\src\app\api\signup\route.js → C:\Users\gjram\sites\pickupgame-app\src\lib\db\index.js
 - `middleware()` --calls--> `createClient()`  [INFERRED]
   C:\Users\gjram\sites\pickupgame-app\middleware.js → C:\Users\gjram\sites\pickupgame-app\src\utils\supabase\server.js
+- `POST()` --calls--> `hasSupabaseAuthEnv()`  [INFERRED]
+  C:\Users\gjram\sites\pickupgame-app\src\app\api\signup\route.js → C:\Users\gjram\sites\pickupgame-app\src\utils\supabase\server.js
 - `POST()` --calls--> `createClient()`  [INFERRED]
   C:\Users\gjram\sites\pickupgame-app\src\app\api\signup\route.js → C:\Users\gjram\sites\pickupgame-app\src\utils\supabase\server.js
-- `Avatar()` --calls--> `initials()`  [EXTRACTED]
-  C:\Users\gjram\sites\pickupgame-app\src\app\messages\page.js → C:\Users\gjram\sites\pickupgame-app\src\app\host\page.js
 
 ## Communities
 
@@ -83,12 +83,12 @@ Cohesion: 0.11
 Nodes (4): Avatar(), InfoScreen(), initials(), inputStyle()
 
 ### Community 3 - "Community 3"
-Cohesion: 0.12
-Nodes (0): 
+Cohesion: 0.2
+Nodes (12): getDb(), hasDatabaseUrl(), middleware(), avatarFor(), isEmail(), normalizeContact(), passwordFromProfile(), POST() (+4 more)
 
 ### Community 4 - "Community 4"
-Cohesion: 0.2
-Nodes (11): getDb(), hasDatabaseUrl(), middleware(), avatarFor(), isEmail(), normalizeContact(), passwordFromProfile(), POST() (+3 more)
+Cohesion: 0.12
+Nodes (0): 
 
 ### Community 5 - "Community 5"
 Cohesion: 0.18
@@ -132,11 +132,11 @@ Nodes (0):
 
 ### Community 15 - "Community 15"
 Cohesion: 1.0
-Nodes (0): 
+Nodes (2): createClient(), hasSupabaseAuthEnv()
 
 ### Community 16 - "Community 16"
 Cohesion: 1.0
-Nodes (0): 
+Nodes (2): createClient(), hasSupabaseAuthEnv()
 
 ### Community 17 - "Community 17"
 Cohesion: 1.0
@@ -203,23 +203,19 @@ Cohesion: 1.0
 Nodes (0): 
 
 ## Knowledge Gaps
-- **Thin community `Community 15`** (2 nodes): `layout.js`, `RootLayout()`
+- **Thin community `Community 17`** (2 nodes): `layout.js`, `RootLayout()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 16`** (2 nodes): `page.js`, `HomePage()`
+- **Thin community `Community 18`** (2 nodes): `page.js`, `HomePage()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 17`** (2 nodes): `page.js`, `FindPage()`
+- **Thin community `Community 19`** (2 nodes): `page.js`, `FindPage()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 18`** (2 nodes): `page.js`, `ProfilePage()`
+- **Thin community `Community 20`** (2 nodes): `page.js`, `ProfilePage()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 19`** (2 nodes): `page.js`, `ReelPage()`
+- **Thin community `Community 21`** (2 nodes): `page.js`, `ReelPage()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 20`** (2 nodes): `IOSFrame.jsx`, `IOSStatusBar()`
+- **Thin community `Community 22`** (2 nodes): `IOSFrame.jsx`, `IOSStatusBar()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 21`** (2 nodes): `SideNav.jsx`, `SideNav()`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 22`** (2 nodes): `client.js`, `createClient()`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 23`** (2 nodes): `middleware.js`, `createClient()`
+- **Thin community `Community 23`** (2 nodes): `SideNav.jsx`, `SideNav()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 24`** (1 nodes): `drizzle.config.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
@@ -243,8 +239,8 @@ Nodes (0):
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Are the 3 inferred relationships involving `POST()` (e.g. with `createClient()` and `hasDatabaseUrl()`) actually correct?**
-  _`POST()` has 3 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 4 inferred relationships involving `POST()` (e.g. with `hasSupabaseAuthEnv()` and `createClient()`) actually correct?**
+  _`POST()` has 4 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 2 inferred relationships involving `createClient()` (e.g. with `middleware()` and `POST()`) actually correct?**
   _`createClient()` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **Should `Community 0` be split into smaller, more focused modules?**
@@ -253,5 +249,5 @@ _Questions this graph is uniquely positioned to answer:_
   _Cohesion score 0.09 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**
   _Cohesion score 0.11 - nodes in this community are weakly interconnected._
-- **Should `Community 3` be split into smaller, more focused modules?**
+- **Should `Community 4` be split into smaller, more focused modules?**
   _Cohesion score 0.12 - nodes in this community are weakly interconnected._

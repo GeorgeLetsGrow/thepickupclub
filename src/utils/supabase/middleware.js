@@ -4,12 +4,20 @@ import { NextResponse } from 'next/server';
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 
+export function hasSupabaseAuthEnv() {
+  return Boolean(supabaseUrl && supabaseKey);
+}
+
 export function createClient(request) {
   let response = NextResponse.next({
     request: {
       headers: request.headers,
     },
   });
+
+  if (!hasSupabaseAuthEnv()) {
+    return { supabase: null, response };
+  }
 
   const supabase = createServerClient(
     supabaseUrl,

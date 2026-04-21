@@ -27,7 +27,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\middleware.js",
       "source_location": "L1",
       "id": "c_users_gjram_sites_pickupgame_app_middleware_js",
-      "community": 4,
+      "community": 3,
       "norm_label": "middleware.js"
     },
     {
@@ -36,7 +36,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\middleware.js",
       "source_location": "L3",
       "id": "middleware_middleware",
-      "community": 4,
+      "community": 3,
       "norm_label": "middleware()"
     },
     {
@@ -72,7 +72,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\app\\layout.js",
       "source_location": "L1",
       "id": "c_users_gjram_sites_pickupgame_app_src_app_layout_js",
-      "community": 15,
+      "community": 17,
       "norm_label": "layout.js"
     },
     {
@@ -81,7 +81,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\app\\layout.js",
       "source_location": "L21",
       "id": "layout_rootlayout",
-      "community": 15,
+      "community": 17,
       "norm_label": "rootlayout()"
     },
     {
@@ -90,7 +90,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\app\\page.js",
       "source_location": "L1",
       "id": "c_users_gjram_sites_pickupgame_app_src_app_page_js",
-      "community": 16,
+      "community": 18,
       "norm_label": "page.js"
     },
     {
@@ -99,7 +99,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\app\\page.js",
       "source_location": "L8",
       "id": "page_homepage",
-      "community": 16,
+      "community": 18,
       "norm_label": "homepage()"
     },
     {
@@ -108,7 +108,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\app\\api\\signup\\route.js",
       "source_location": "L1",
       "id": "c_users_gjram_sites_pickupgame_app_src_app_api_signup_route_js",
-      "community": 4,
+      "community": 3,
       "norm_label": "route.js"
     },
     {
@@ -117,7 +117,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\app\\api\\signup\\route.js",
       "source_location": "L11",
       "id": "route_normalizecontact",
-      "community": 4,
+      "community": 3,
       "norm_label": "normalizecontact()"
     },
     {
@@ -126,7 +126,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\app\\api\\signup\\route.js",
       "source_location": "L15",
       "id": "route_isemail",
-      "community": 4,
+      "community": 3,
       "norm_label": "isemail()"
     },
     {
@@ -135,7 +135,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\app\\api\\signup\\route.js",
       "source_location": "L19",
       "id": "route_passwordfromprofile",
-      "community": 4,
+      "community": 3,
       "norm_label": "passwordfromprofile()"
     },
     {
@@ -144,7 +144,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\app\\api\\signup\\route.js",
       "source_location": "L23",
       "id": "route_avatarfor",
-      "community": 4,
+      "community": 3,
       "norm_label": "avatarfor()"
     },
     {
@@ -153,7 +153,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\app\\api\\signup\\route.js",
       "source_location": "L28",
       "id": "route_validateprofile",
-      "community": 4,
+      "community": 3,
       "norm_label": "validateprofile()"
     },
     {
@@ -162,7 +162,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\app\\api\\signup\\route.js",
       "source_location": "L45",
       "id": "route_userpayload",
-      "community": 4,
+      "community": 3,
       "norm_label": "userpayload()"
     },
     {
@@ -171,7 +171,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\app\\api\\signup\\route.js",
       "source_location": "L59",
       "id": "route_post",
-      "community": 4,
+      "community": 3,
       "norm_label": "post()"
     },
     {
@@ -180,7 +180,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\app\\find\\page.js",
       "source_location": "L1",
       "id": "c_users_gjram_sites_pickupgame_app_src_app_find_page_js",
-      "community": 17,
+      "community": 19,
       "norm_label": "page.js"
     },
     {
@@ -189,7 +189,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\app\\find\\page.js",
       "source_location": "L8",
       "id": "page_findpage",
-      "community": 17,
+      "community": 19,
       "norm_label": "findpage()"
     },
     {
@@ -423,7 +423,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\app\\profile\\page.js",
       "source_location": "L1",
       "id": "c_users_gjram_sites_pickupgame_app_src_app_profile_page_js",
-      "community": 18,
+      "community": 20,
       "norm_label": "page.js"
     },
     {
@@ -432,7 +432,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\app\\profile\\page.js",
       "source_location": "L8",
       "id": "page_profilepage",
-      "community": 18,
+      "community": 20,
       "norm_label": "profilepage()"
     },
     {
@@ -441,7 +441,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\app\\reel\\page.js",
       "source_location": "L1",
       "id": "c_users_gjram_sites_pickupgame_app_src_app_reel_page_js",
-      "community": 19,
+      "community": 21,
       "norm_label": "page.js"
     },
     {
@@ -450,7 +450,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\app\\reel\\page.js",
       "source_location": "L8",
       "id": "page_reelpage",
-      "community": 19,
+      "community": 21,
       "norm_label": "reelpage()"
     },
     {
@@ -990,7 +990,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\components\\IOSFrame.jsx",
       "source_location": "L1",
       "id": "c_users_gjram_sites_pickupgame_app_src_components_iosframe_jsx",
-      "community": 20,
+      "community": 22,
       "norm_label": "iosframe.jsx"
     },
     {
@@ -999,7 +999,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\components\\IOSFrame.jsx",
       "source_location": "L4",
       "id": "iosframe_iosstatusbar",
-      "community": 20,
+      "community": 22,
       "norm_label": "iosstatusbar()"
     },
     {
@@ -1332,7 +1332,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\components\\SocialApp.jsx",
       "source_location": "L1",
       "id": "c_users_gjram_sites_pickupgame_app_src_components_socialapp_jsx",
-      "community": 3,
+      "community": 4,
       "norm_label": "socialapp.jsx"
     },
     {
@@ -1341,7 +1341,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\components\\SocialApp.jsx",
       "source_location": "L99",
       "id": "socialapp_socialapp",
-      "community": 3,
+      "community": 4,
       "norm_label": "socialapp()"
     },
     {
@@ -1350,7 +1350,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\components\\SocialApp.jsx",
       "source_location": "L131",
       "id": "socialapp_tabbar",
-      "community": 3,
+      "community": 4,
       "norm_label": "tabbar()"
     },
     {
@@ -1359,7 +1359,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\components\\SocialApp.jsx",
       "source_location": "L161",
       "id": "socialapp_hometab",
-      "community": 3,
+      "community": 4,
       "norm_label": "hometab()"
     },
     {
@@ -1368,7 +1368,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\components\\SocialApp.jsx",
       "source_location": "L207",
       "id": "socialapp_upcomingcard",
-      "community": 3,
+      "community": 4,
       "norm_label": "upcomingcard()"
     },
     {
@@ -1377,7 +1377,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\components\\SocialApp.jsx",
       "source_location": "L241",
       "id": "socialapp_feedpost",
-      "community": 3,
+      "community": 4,
       "norm_label": "feedpost()"
     },
     {
@@ -1386,7 +1386,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\components\\SocialApp.jsx",
       "source_location": "L283",
       "id": "socialapp_findtab",
-      "community": 3,
+      "community": 4,
       "norm_label": "findtab()"
     },
     {
@@ -1395,7 +1395,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\components\\SocialApp.jsx",
       "source_location": "L322",
       "id": "socialapp_nearbycard",
-      "community": 3,
+      "community": 4,
       "norm_label": "nearbycard()"
     },
     {
@@ -1404,7 +1404,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\components\\SocialApp.jsx",
       "source_location": "L351",
       "id": "socialapp_mapview",
-      "community": 3,
+      "community": 4,
       "norm_label": "mapview()"
     },
     {
@@ -1413,7 +1413,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\components\\SocialApp.jsx",
       "source_location": "L378",
       "id": "socialapp_reeltab",
-      "community": 3,
+      "community": 4,
       "norm_label": "reeltab()"
     },
     {
@@ -1422,7 +1422,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\components\\SocialApp.jsx",
       "source_location": "L444",
       "id": "socialapp_profiletab",
-      "community": 3,
+      "community": 4,
       "norm_label": "profiletab()"
     },
     {
@@ -1431,7 +1431,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\components\\SocialApp.jsx",
       "source_location": "L491",
       "id": "socialapp_positionheatmap",
-      "community": 3,
+      "community": 4,
       "norm_label": "positionheatmap()"
     },
     {
@@ -1440,7 +1440,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\components\\SocialApp.jsx",
       "source_location": "L515",
       "id": "socialapp_profilegrid",
-      "community": 3,
+      "community": 4,
       "norm_label": "profilegrid()"
     },
     {
@@ -1449,7 +1449,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\components\\SocialApp.jsx",
       "source_location": "L541",
       "id": "socialapp_createsheet",
-      "community": 3,
+      "community": 4,
       "norm_label": "createsheet()"
     },
     {
@@ -1458,7 +1458,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\components\\SocialApp.jsx",
       "source_location": "L572",
       "id": "socialapp_iconbtn",
-      "community": 3,
+      "community": 4,
       "norm_label": "iconbtn()"
     },
     {
@@ -1467,7 +1467,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\components\\SocialApp.jsx",
       "source_location": "L581",
       "id": "socialapp_sectionlabel",
-      "community": 3,
+      "community": 4,
       "norm_label": "sectionlabel()"
     },
     {
@@ -1764,7 +1764,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\components\\nav\\SideNav.jsx",
       "source_location": "L1",
       "id": "c_users_gjram_sites_pickupgame_app_src_components_nav_sidenav_jsx",
-      "community": 21,
+      "community": 23,
       "norm_label": "sidenav.jsx"
     },
     {
@@ -1773,7 +1773,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\components\\nav\\SideNav.jsx",
       "source_location": "L13",
       "id": "sidenav_sidenav",
-      "community": 21,
+      "community": 23,
       "norm_label": "sidenav()"
     },
     {
@@ -1809,7 +1809,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\lib\\db\\index.js",
       "source_location": "L1",
       "id": "c_users_gjram_sites_pickupgame_app_src_lib_db_index_js",
-      "community": 4,
+      "community": 3,
       "norm_label": "index.js"
     },
     {
@@ -1818,7 +1818,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\lib\\db\\index.js",
       "source_location": "L9",
       "id": "index_hasdatabaseurl",
-      "community": 4,
+      "community": 3,
       "norm_label": "hasdatabaseurl()"
     },
     {
@@ -1827,7 +1827,7 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\lib\\db\\index.js",
       "source_location": "L13",
       "id": "index_getdb",
-      "community": 4,
+      "community": 3,
       "norm_label": "getdb()"
     },
     {
@@ -1845,16 +1845,25 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\utils\\supabase\\client.js",
       "source_location": "L1",
       "id": "c_users_gjram_sites_pickupgame_app_src_utils_supabase_client_js",
-      "community": 22,
+      "community": 15,
       "norm_label": "client.js"
+    },
+    {
+      "label": "hasSupabaseAuthEnv()",
+      "file_type": "code",
+      "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\utils\\supabase\\client.js",
+      "source_location": "L6",
+      "id": "client_hassupabaseauthenv",
+      "community": 15,
+      "norm_label": "hassupabaseauthenv()"
     },
     {
       "label": "createClient()",
       "file_type": "code",
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\utils\\supabase\\client.js",
-      "source_location": "L6",
+      "source_location": "L10",
       "id": "client_createclient",
-      "community": 22,
+      "community": 15,
       "norm_label": "createclient()"
     },
     {
@@ -1863,16 +1872,25 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\utils\\supabase\\middleware.js",
       "source_location": "L1",
       "id": "c_users_gjram_sites_pickupgame_app_src_utils_supabase_middleware_js",
-      "community": 23,
+      "community": 16,
       "norm_label": "middleware.js"
+    },
+    {
+      "label": "hasSupabaseAuthEnv()",
+      "file_type": "code",
+      "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\utils\\supabase\\middleware.js",
+      "source_location": "L7",
+      "id": "middleware_hassupabaseauthenv",
+      "community": 16,
+      "norm_label": "hassupabaseauthenv()"
     },
     {
       "label": "createClient()",
       "file_type": "code",
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\utils\\supabase\\middleware.js",
-      "source_location": "L7",
+      "source_location": "L11",
       "id": "middleware_createclient",
-      "community": 23,
+      "community": 16,
       "norm_label": "createclient()"
     },
     {
@@ -1881,16 +1899,25 @@
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\utils\\supabase\\server.js",
       "source_location": "L1",
       "id": "c_users_gjram_sites_pickupgame_app_src_utils_supabase_server_js",
-      "community": 4,
+      "community": 3,
       "norm_label": "server.js"
+    },
+    {
+      "label": "hasSupabaseAuthEnv()",
+      "file_type": "code",
+      "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\utils\\supabase\\server.js",
+      "source_location": "L7",
+      "id": "server_hassupabaseauthenv",
+      "community": 3,
+      "norm_label": "hassupabaseauthenv()"
     },
     {
       "label": "createClient()",
       "file_type": "code",
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\utils\\supabase\\server.js",
-      "source_location": "L7",
+      "source_location": "L11",
       "id": "server_createclient",
-      "community": 4,
+      "community": 3,
       "norm_label": "createclient()"
     }
   ],
@@ -2098,6 +2125,18 @@
       "source": "route_userpayload",
       "target": "route_post",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\app\\api\\signup\\route.js",
+      "source_location": "L69",
+      "weight": 1.0,
+      "_src": "route_post",
+      "_tgt": "server_hassupabaseauthenv",
+      "source": "route_post",
+      "target": "server_hassupabaseauthenv"
     },
     {
       "relation": "calls",
@@ -4122,8 +4161,32 @@
       "source_location": "L6",
       "weight": 1.0,
       "_src": "c_users_gjram_sites_pickupgame_app_src_utils_supabase_client_js",
+      "_tgt": "client_hassupabaseauthenv",
+      "source": "c_users_gjram_sites_pickupgame_app_src_utils_supabase_client_js",
+      "target": "client_hassupabaseauthenv",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\utils\\supabase\\client.js",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_src": "c_users_gjram_sites_pickupgame_app_src_utils_supabase_client_js",
       "_tgt": "client_createclient",
       "source": "c_users_gjram_sites_pickupgame_app_src_utils_supabase_client_js",
+      "target": "client_createclient",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\utils\\supabase\\client.js",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "client_createclient",
+      "_tgt": "client_hassupabaseauthenv",
+      "source": "client_hassupabaseauthenv",
       "target": "client_createclient",
       "confidence_score": 1.0
     },
@@ -4134,8 +4197,32 @@
       "source_location": "L7",
       "weight": 1.0,
       "_src": "c_users_gjram_sites_pickupgame_app_src_utils_supabase_middleware_js",
+      "_tgt": "middleware_hassupabaseauthenv",
+      "source": "c_users_gjram_sites_pickupgame_app_src_utils_supabase_middleware_js",
+      "target": "middleware_hassupabaseauthenv",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\utils\\supabase\\middleware.js",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "c_users_gjram_sites_pickupgame_app_src_utils_supabase_middleware_js",
       "_tgt": "middleware_createclient",
       "source": "c_users_gjram_sites_pickupgame_app_src_utils_supabase_middleware_js",
+      "target": "middleware_createclient",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\utils\\supabase\\middleware.js",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_src": "middleware_createclient",
+      "_tgt": "middleware_hassupabaseauthenv",
+      "source": "middleware_hassupabaseauthenv",
       "target": "middleware_createclient",
       "confidence_score": 1.0
     },
@@ -4146,8 +4233,32 @@
       "source_location": "L7",
       "weight": 1.0,
       "_src": "c_users_gjram_sites_pickupgame_app_src_utils_supabase_server_js",
+      "_tgt": "server_hassupabaseauthenv",
+      "source": "c_users_gjram_sites_pickupgame_app_src_utils_supabase_server_js",
+      "target": "server_hassupabaseauthenv",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\utils\\supabase\\server.js",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "c_users_gjram_sites_pickupgame_app_src_utils_supabase_server_js",
       "_tgt": "server_createclient",
       "source": "c_users_gjram_sites_pickupgame_app_src_utils_supabase_server_js",
+      "target": "server_createclient",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\utils\\supabase\\server.js",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "server_createclient",
+      "_tgt": "server_hassupabaseauthenv",
+      "source": "server_hassupabaseauthenv",
       "target": "server_createclient",
       "confidence_score": 1.0
     }

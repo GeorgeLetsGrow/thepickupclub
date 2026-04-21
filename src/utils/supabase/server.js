@@ -4,7 +4,15 @@ import { cookies } from 'next/headers';
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 
+export function hasSupabaseAuthEnv() {
+  return Boolean(supabaseUrl && supabaseKey);
+}
+
 export async function createClient() {
+  if (!hasSupabaseAuthEnv()) {
+    throw new Error('NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY are required.');
+  }
+
   const cookieStore = await cookies();
 
   return createServerClient(

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { eq } from 'drizzle-orm';
 import { getDb, hasDatabaseUrl, users } from '@/lib/db';
-import { createClient } from '@/utils/supabase/server';
+import { createClient, hasSupabaseAuthEnv } from '@/utils/supabase/server';
 
 const AVATAR_COLORS = ['#1e2a35', '#d97757', '#4a7c59', '#8b6f47', '#2a4a6b', '#6b5b8e'];
 const POSITION_SET = new Set(['P', 'C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF']);
@@ -66,7 +66,7 @@ export async function POST(request) {
 
   let authUserId = null;
 
-  if (isEmail(profile.contact)) {
+  if (isEmail(profile.contact) && hasSupabaseAuthEnv()) {
     const supabase = await createClient();
     const password = passwordFromProfile(profile);
     let authResult = await supabase.auth.signUp({
