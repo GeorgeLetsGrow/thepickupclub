@@ -1,4 +1,5 @@
 import { Oswald, Inter } from 'next/font/google';
+import { AuthGate } from '@/components/AuthGate';
 import './globals.css';
 
 const oswald = Oswald({
@@ -20,7 +21,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${oswald.variable} ${inter.variable}`}>
-      <body>{children}</body>
+      <body>
+        <AuthGate>{children}</AuthGate>
+      </body>
     </html>
   );
 }

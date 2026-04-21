@@ -1,11 +1,11 @@
 # Graph Report - C:\Users\gjram\sites\pickupgame-app  (2026-04-21)
 
 ## Corpus Check
-- 28 files · ~44,810 words
+- 29 files · ~45,882 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 181 nodes · 158 edges · 26 communities detected
+- 188 nodes · 165 edges · 27 communities detected
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
@@ -36,14 +36,17 @@
 - [[_COMMUNITY_Community 23|Community 23]]
 - [[_COMMUNITY_Community 24|Community 24]]
 - [[_COMMUNITY_Community 25|Community 25]]
+- [[_COMMUNITY_Community 26|Community 26]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `initials()` - 3 edges
 2. `Avatar()` - 3 edges
 3. `InfoScreen()` - 2 edges
 4. `inputStyle()` - 2 edges
-5. `fieldKey()` - 2 edges
-6. `gamesForField()` - 2 edges
+5. `inputClass()` - 2 edges
+6. `AuthGate()` - 2 edges
+7. `fieldKey()` - 2 edges
+8. `gamesForField()` - 2 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Avatar()` --calls--> `initials()`  [EXTRACTED]
@@ -84,8 +87,8 @@ Cohesion: 0.25
 Nodes (0): 
 
 ### Community 8 - "Community 8"
-Cohesion: 0.4
-Nodes (0): 
+Cohesion: 0.33
+Nodes (2): AuthGate(), inputClass()
 
 ### Community 9 - "Community 9"
 Cohesion: 0.4
@@ -96,15 +99,15 @@ Cohesion: 0.4
 Nodes (0): 
 
 ### Community 11 - "Community 11"
-Cohesion: 0.5
+Cohesion: 0.4
 Nodes (0): 
 
 ### Community 12 - "Community 12"
-Cohesion: 0.67
+Cohesion: 0.5
 Nodes (0): 
 
 ### Community 13 - "Community 13"
-Cohesion: 1.0
+Cohesion: 0.67
 Nodes (0): 
 
 ### Community 14 - "Community 14"
@@ -155,32 +158,36 @@ Nodes (0):
 Cohesion: 1.0
 Nodes (0): 
 
+### Community 26 - "Community 26"
+Cohesion: 1.0
+Nodes (0): 
+
 ## Knowledge Gaps
-- **Thin community `Community 13`** (2 nodes): `layout.js`, `RootLayout()`
+- **Thin community `Community 14`** (2 nodes): `layout.js`, `RootLayout()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 14`** (2 nodes): `page.js`, `HomePage()`
+- **Thin community `Community 15`** (2 nodes): `page.js`, `HomePage()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 15`** (2 nodes): `page.js`, `FindPage()`
+- **Thin community `Community 16`** (2 nodes): `page.js`, `FindPage()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 16`** (2 nodes): `page.js`, `ProfilePage()`
+- **Thin community `Community 17`** (2 nodes): `page.js`, `ProfilePage()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 17`** (2 nodes): `page.js`, `ReelPage()`
+- **Thin community `Community 18`** (2 nodes): `page.js`, `ReelPage()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 18`** (2 nodes): `IOSFrame.jsx`, `IOSStatusBar()`
+- **Thin community `Community 19`** (2 nodes): `IOSFrame.jsx`, `IOSStatusBar()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 19`** (2 nodes): `SideNav.jsx`, `SideNav()`
+- **Thin community `Community 20`** (2 nodes): `SideNav.jsx`, `SideNav()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 20`** (1 nodes): `eslint.config.mjs`
+- **Thin community `Community 21`** (1 nodes): `eslint.config.mjs`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 21`** (1 nodes): `next.config.mjs`
+- **Thin community `Community 22`** (1 nodes): `next.config.mjs`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 22`** (1 nodes): `postcss.config.mjs`
+- **Thin community `Community 23`** (1 nodes): `postcss.config.mjs`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 23`** (1 nodes): `data.js`
+- **Thin community `Community 24`** (1 nodes): `data.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 24`** (1 nodes): `social-data.js`
+- **Thin community `Community 25`** (1 nodes): `social-data.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 25`** (1 nodes): `theme.js`
+- **Thin community `Community 26`** (1 nodes): `theme.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 
 ## Suggested Questions
