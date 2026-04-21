@@ -56,6 +56,9 @@ function inputClass(extra = '') {
 
 export function AuthGate({ children }) {
   const user = React.useSyncExternalStore(subscribeToAuthStore, readStoredUser, () => null);
+  const [submitting, setSubmitting] = React.useState(false);
+  const [error, setError] = React.useState('');
+  const [statusMessage, setStatusMessage] = React.useState('');
   const [form, setForm] = React.useState({
     name: '',
     contact: '',
@@ -74,8 +77,12 @@ export function AuthGate({ children }) {
     });
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
+    setSubmitting(true);
+    setError('');
+    setStatusMessage('');
+
     const nextUser = {
       ...form,
       name: form.name.trim(),
@@ -83,9 +90,37 @@ export function AuthGate({ children }) {
       zip: form.zip.trim(),
       createdAt: new Date().toISOString(),
     };
-    if (!nextUser.name || !nextUser.contact || !nextUser.zip || nextUser.positions.length === 0) return;
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(nextUser));
-    window.dispatchEvent(new Event('pickupclub-auth'));
+    if (!nextUser.name || !nextUser.contact || !nextUser.zip || nextUser.positions.length === 0) {
+      setError('Complete the required profile fields before continuing.');
+      setSubmitting(false);
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(nextUser),
+      });
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data?.error || 'Could not create your account.');
+      }
+
+      const savedUser = {
+        ...nextUser,
+        ...data.user,
+        dbPersisted: Boolean(data.persisted),
+      };
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(savedUser));
+      if (data.message) setStatusMessage(data.message);
+      window.dispatchEvent(new Event('pickupclub-auth'));
+    } catch (err) {
+      setError(err.message || 'Could not create your account.');
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   if (user) return children;
@@ -229,13 +264,26 @@ export function AuthGate({ children }) {
 
               <button
                 type="submit"
-                className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-red px-5 py-3.5 font-display text-sm font-bold tracking-widest text-white uppercase shadow-sm transition-opacity hover:opacity-95"
+                disabled={submitting}
+                className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-red px-5 py-3.5 font-display text-sm font-bold tracking-widest text-white uppercase shadow-sm transition-opacity hover:opacity-95 disabled:cursor-not-allowed disabled:opacity-60"
               >
-                Create Account <IconCheck size={16} />
+                {submitting ? 'Creating Account...' : 'Create Account'} <IconCheck size={16} />
               </button>
 
+              {error && (
+                <p className="rounded-xl border border-red/30 bg-red/5 px-3 py-2 text-sm leading-5 text-red">
+                  {error}
+                </p>
+              )}
+
+              {statusMessage && (
+                <p className="rounded-xl border border-sand bg-cream px-3 py-2 text-sm leading-5 text-muted">
+                  {statusMessage}
+                </p>
+              )}
+
               <p className="text-center text-xs leading-5 text-muted">
-                Your profile is saved on this device for the prototype. Real authentication can connect here later.
+                Your profile is saved securely when a database is configured, and mirrored on this device for the prototype.
               </p>
             </div>
           </form>

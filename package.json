@@ -6,16 +6,27 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:deploy": "node scripts/db-migrate-if-configured.mjs",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "netlify:build": "npm run db:deploy && npm run build"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
+    "@netlify/neon": "^0.1.2",
     "@tailwindcss/postcss": "^4.2.4",
+    "drizzle-orm": "^0.45.2",
     "next": "16.2.4",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "tailwindcss": "^4.2.4"
   },
   "devDependencies": {
+    "dotenv": "^17.4.2",
+    "drizzle-kit": "^0.31.10",
     "eslint": "^9",
     "eslint-config-next": "16.2.4"
   }
