@@ -102,7 +102,15 @@ export function AuthGate({ children }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(nextUser),
       });
-      const data = await response.json();
+      const responseText = await response.text();
+      let data = {};
+      if (responseText) {
+        try {
+          data = JSON.parse(responseText);
+        } catch {
+          data = { error: responseText };
+        }
+      }
 
       if (!response.ok) {
         throw new Error(data?.error || 'Could not create your account.');

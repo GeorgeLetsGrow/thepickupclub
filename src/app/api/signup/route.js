@@ -57,91 +57,119 @@ function userPayload(user, persisted) {
 }
 
 export async function POST(request) {
-  const body = await request.json().catch(() => null);
-  const profile = validateProfile(body);
+  let profile;
 
-  if (profile.error) {
-    return NextResponse.json({ error: profile.error }, { status: 400 });
-  }
+  try {
+    const body = await request.json().catch(() => null);
+    profile = validateProfile(body);
 
-  let authUserId = null;
+    if (profile.error) {
+      return NextResponse.json({ error: profile.error }, { status: 400 });
+    }
 
-  if (isEmail(profile.contact) && hasSupabaseAuthEnv()) {
-    const supabase = await createClient();
-    const password = passwordFromProfile(profile);
-    let authResult = await supabase.auth.signUp({
-      email: profile.contact,
-      password,
-      options: {
-        data: {
-          name: profile.name,
-          zip: profile.zip,
-          account_type: profile.accountType,
-          positions: profile.positions,
-        },
-      },
-    });
+    let authUserId = null;
+    let authWarning = '';
 
-    if (authResult.error?.message?.toLowerCase().includes('already registered')) {
-      authResult = await supabase.auth.signInWithPassword({
+    if (isEmail(profile.contact) && hasSupabaseAuthEnv()) {
+      const supabase = await createClient();
+      const password = passwordFromProfile(profile);
+      let authResult = await supabase.auth.signUp({
         email: profile.contact,
         password,
+        options: {
+          data: {
+            name: profile.name,
+            zip: profile.zip,
+            account_type: profile.accountType,
+            positions: profile.positions,
+          },
+        },
       });
+
+      if (authResult.error?.message?.toLowerCase().includes('already registered')) {
+        authResult = await supabase.auth.signInWithPassword({
+          email: profile.contact,
+          password,
+        });
+      }
+
+      if (authResult.error) {
+        authWarning = authResult.error.message;
+      } else {
+        authUserId = authResult.data.user?.id || null;
+      }
     }
 
-    if (authResult.error) {
-      return NextResponse.json({ error: authResult.error.message }, { status: 400 });
+    if (!hasDatabaseUrl()) {
+      const user = {
+        id: `local-${Date.now()}`,
+        ...profile,
+        avatarColor: avatarFor(profile.name),
+        authUserId,
+      };
+      return NextResponse.json({
+        user: userPayload(user, false),
+        persisted: false,
+        message: authWarning || 'SUPABASE_DATABASE_URL is not configured; using prototype local profile mode.',
+      }, { status: 202 });
     }
 
-    authUserId = authResult.data.user?.id || null;
-  }
+    const db = getDb();
+    const existing = await db
+      .select()
+      .from(users)
+      .where(eq(users.contact, profile.contact))
+      .limit(1);
 
-  if (!hasDatabaseUrl()) {
-    const user = {
-      id: `local-${Date.now()}`,
-      ...profile,
-      avatarColor: avatarFor(profile.name),
-      authUserId,
-    };
-    return NextResponse.json({
-      user: userPayload(user, false),
-      persisted: false,
-      message: 'SUPABASE_DATABASE_URL is not configured; using prototype local profile mode.',
-    }, { status: 202 });
-  }
+    let user;
 
-  const db = getDb();
-  const existing = await db
-    .select()
-    .from(users)
-    .where(eq(users.contact, profile.contact))
-    .limit(1);
-
-  let user;
-
-  if (existing.length > 0) {
-    [user] = existing;
-    if (authUserId && !user.authUserId) {
+    if (existing.length > 0) {
+      [user] = existing;
+      if (authUserId && !user.authUserId) {
+        [user] = await db
+          .update(users)
+          .set({ authUserId })
+          .where(eq(users.id, user.id))
+          .returning();
+      }
+    } else {
       [user] = await db
-        .update(users)
-        .set({ authUserId })
-        .where(eq(users.id, user.id))
+        .insert(users)
+        .values({ ...profile, authUserId, avatarColor: avatarFor(profile.name) })
         .returning();
     }
-  } else {
-    [user] = await db
-      .insert(users)
-      .values({ ...profile, authUserId, avatarColor: avatarFor(profile.name) })
-      .returning();
-  }
 
-  const response = NextResponse.json({ user: userPayload(user, true), persisted: true });
-  response.cookies.set('pickup_user_id', user.id, {
-    httpOnly: true,
-    sameSite: 'lax',
-    secure: process.env.NODE_ENV === 'production',
-    path: '/',
-    maxAge: 60 * 60 * 24 * 30,
-  });
-  return response;
+    const response = NextResponse.json({
+      user: userPayload(user, true),
+      persisted: true,
+      message: authWarning,
+    });
+    response.cookies.set('pickup_user_id', user.id, {
+      httpOnly: true,
+      sameSite: 'lax',
+      secure: process.env.NODE_ENV === 'production',
+      path: '/',
+      maxAge: 60 * 60 * 24 * 30,
+    });
+    return response;
+  } catch (error) {
+    if (profile && !profile.error) {
+      const user = {
+        id: `local-${Date.now()}`,
+        ...profile,
+        avatarColor: avatarFor(profile.name),
+        authUserId: null,
+      };
+
+      return NextResponse.json({
+        user: userPayload(user, false),
+        persisted: false,
+        message: 'Database profile storage is unavailable; using prototype local profile mode.',
+      }, { status: 202 });
+    }
+
+    return NextResponse.json({
+      error: error.message || 'Could not create your account.',
+    }, { status: 500 });
+  }
 }
