@@ -17,12 +17,16 @@ In Supabase:
 In Netlify, set:
 
 ```env
+NEXT_PUBLIC_SUPABASE_URL="https://your-project.supabase.co"
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY="sb_publishable_..."
 SUPABASE_DATABASE_URL="postgresql://..."
 ```
 
-Locally, add the same value to `.env.local` if you want local signup writes to hit Supabase:
+Locally, add the same values to `.env.local` if you want local Supabase Auth and signup writes:
 
 ```env
+NEXT_PUBLIC_SUPABASE_URL="https://your-project.supabase.co"
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY="sb_publishable_..."
 SUPABASE_DATABASE_URL="postgresql://..."
 ```
 

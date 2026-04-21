@@ -4,6 +4,7 @@ import {
 
 export const users = pgTable('users', {
   id: uuid('id').defaultRandom().primaryKey(),
+  authUserId: uuid('auth_user_id'),
   name: varchar('name', { length: 120 }).notNull(),
   contact: varchar('contact', { length: 180 }).notNull(),
   zip: varchar('zip', { length: 12 }).notNull(),
@@ -13,6 +14,7 @@ export const users = pgTable('users', {
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
   updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
 }, table => ({
+  authUserIdx: uniqueIndex('users_auth_user_idx').on(table.authUserId),
   contactIdx: uniqueIndex('users_contact_idx').on(table.contact),
 }));
 

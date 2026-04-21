@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { eq } from 'drizzle-orm';
 import { getDb, hasDatabaseUrl, users } from '@/lib/db';
+import { createClient } from '@/utils/supabase/server';
 
 const AVATAR_COLORS = ['#1e2a35', '#d97757', '#4a7c59', '#8b6f47', '#2a4a6b', '#6b5b8e'];
 const POSITION_SET = new Set(['P', 'C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF']);
@@ -9,6 +10,14 @@ export const runtime = 'nodejs';
 
 function normalizeContact(contact) {
   return String(contact || '').trim().toLowerCase();
+}
+
+function isEmail(contact) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact);
+}
+
+function passwordFromProfile(profile) {
+  return `TPC-${profile.contact}-${profile.zip}`.slice(0, 72);
 }
 
 function avatarFor(name) {
@@ -42,6 +51,7 @@ function userPayload(user, persisted) {
     accountType: user.accountType,
     positions: user.positions,
     avatarColor: user.avatarColor,
+    authUserId: user.authUserId,
     persisted,
   };
 }
@@ -54,11 +64,44 @@ export async function POST(request) {
     return NextResponse.json({ error: profile.error }, { status: 400 });
   }
 
+  let authUserId = null;
+
+  if (isEmail(profile.contact)) {
+    const supabase = await createClient();
+    const password = passwordFromProfile(profile);
+    let authResult = await supabase.auth.signUp({
+      email: profile.contact,
+      password,
+      options: {
+        data: {
+          name: profile.name,
+          zip: profile.zip,
+          account_type: profile.accountType,
+          positions: profile.positions,
+        },
+      },
+    });
+
+    if (authResult.error?.message?.toLowerCase().includes('already registered')) {
+      authResult = await supabase.auth.signInWithPassword({
+        email: profile.contact,
+        password,
+      });
+    }
+
+    if (authResult.error) {
+      return NextResponse.json({ error: authResult.error.message }, { status: 400 });
+    }
+
+    authUserId = authResult.data.user?.id || null;
+  }
+
   if (!hasDatabaseUrl()) {
     const user = {
       id: `local-${Date.now()}`,
       ...profile,
       avatarColor: avatarFor(profile.name),
+      authUserId,
     };
     return NextResponse.json({
       user: userPayload(user, false),
@@ -74,12 +117,23 @@ export async function POST(request) {
     .where(eq(users.contact, profile.contact))
     .limit(1);
 
-  const [user] = existing.length > 0
-    ? existing
-    : await db
+  let user;
+
+  if (existing.length > 0) {
+    [user] = existing;
+    if (authUserId && !user.authUserId) {
+      [user] = await db
+        .update(users)
+        .set({ authUserId })
+        .where(eq(users.id, user.id))
+        .returning();
+    }
+  } else {
+    [user] = await db
       .insert(users)
-      .values({ ...profile, avatarColor: avatarFor(profile.name) })
+      .values({ ...profile, authUserId, avatarColor: avatarFor(profile.name) })
       .returning();
+  }
 
   const response = NextResponse.json({ user: userPayload(user, true), persisted: true });
   response.cookies.set('pickup_user_id', user.id, {

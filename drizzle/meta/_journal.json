@@ -8,6 +8,13 @@
       "when": 1776800250199,
       "tag": "0000_simple_kylun",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1776801055434,
+      "tag": "0001_dry_diamondback",
+      "breakpoints": true
     }
   ]
 }

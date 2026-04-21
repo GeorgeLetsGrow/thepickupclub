@@ -1,12 +1,12 @@
 # Graph Report - C:\Users\gjram\sites\pickupgame-app  (2026-04-21)
 
 ## Corpus Check
-- 34 files · ~48,021 words
+- 38 files · ~48,360 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 200 nodes · 178 edges · 31 communities detected
-- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 2 edges (avg confidence: 0.8)
+- 210 nodes · 188 edges · 33 communities detected
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 4 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Community Hubs (Navigation)
@@ -41,24 +41,30 @@
 - [[_COMMUNITY_Community 28|Community 28]]
 - [[_COMMUNITY_Community 29|Community 29]]
 - [[_COMMUNITY_Community 30|Community 30]]
+- [[_COMMUNITY_Community 31|Community 31]]
+- [[_COMMUNITY_Community 32|Community 32]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `POST()` - 6 edges
+1. `POST()` - 9 edges
 2. `validateProfile()` - 3 edges
 3. `initials()` - 3 edges
 4. `Avatar()` - 3 edges
-5. `normalizeContact()` - 2 edges
-6. `avatarFor()` - 2 edges
-7. `userPayload()` - 2 edges
-8. `InfoScreen()` - 2 edges
-9. `inputStyle()` - 2 edges
-10. `inputClass()` - 2 edges
+5. `createClient()` - 3 edges
+6. `middleware()` - 2 edges
+7. `normalizeContact()` - 2 edges
+8. `isEmail()` - 2 edges
+9. `passwordFromProfile()` - 2 edges
+10. `avatarFor()` - 2 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `POST()` --calls--> `hasDatabaseUrl()`  [INFERRED]
   C:\Users\gjram\sites\pickupgame-app\src\app\api\signup\route.js → C:\Users\gjram\sites\pickupgame-app\src\lib\db\index.js
 - `POST()` --calls--> `getDb()`  [INFERRED]
   C:\Users\gjram\sites\pickupgame-app\src\app\api\signup\route.js → C:\Users\gjram\sites\pickupgame-app\src\lib\db\index.js
+- `middleware()` --calls--> `createClient()`  [INFERRED]
+  C:\Users\gjram\sites\pickupgame-app\middleware.js → C:\Users\gjram\sites\pickupgame-app\src\utils\supabase\server.js
+- `POST()` --calls--> `createClient()`  [INFERRED]
+  C:\Users\gjram\sites\pickupgame-app\src\app\api\signup\route.js → C:\Users\gjram\sites\pickupgame-app\src\utils\supabase\server.js
 - `Avatar()` --calls--> `initials()`  [EXTRACTED]
   C:\Users\gjram\sites\pickupgame-app\src\app\messages\page.js → C:\Users\gjram\sites\pickupgame-app\src\app\host\page.js
 
@@ -81,11 +87,11 @@ Cohesion: 0.12
 Nodes (0): 
 
 ### Community 4 - "Community 4"
-Cohesion: 0.18
-Nodes (0): 
+Cohesion: 0.2
+Nodes (11): getDb(), hasDatabaseUrl(), middleware(), avatarFor(), isEmail(), normalizeContact(), passwordFromProfile(), POST() (+3 more)
 
 ### Community 5 - "Community 5"
-Cohesion: 0.2
+Cohesion: 0.18
 Nodes (0): 
 
 ### Community 6 - "Community 6"
@@ -93,8 +99,8 @@ Cohesion: 0.2
 Nodes (0): 
 
 ### Community 7 - "Community 7"
-Cohesion: 0.36
-Nodes (7): getDb(), hasDatabaseUrl(), avatarFor(), normalizeContact(), POST(), userPayload(), validateProfile()
+Cohesion: 0.2
+Nodes (0): 
 
 ### Community 8 - "Community 8"
 Cohesion: 0.25
@@ -188,6 +194,14 @@ Nodes (0):
 Cohesion: 1.0
 Nodes (0): 
 
+### Community 31 - "Community 31"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 32 - "Community 32"
+Cohesion: 1.0
+Nodes (0): 
+
 ## Knowledge Gaps
 - **Thin community `Community 15`** (2 nodes): `layout.js`, `RootLayout()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
@@ -203,30 +217,36 @@ Nodes (0):
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 21`** (2 nodes): `SideNav.jsx`, `SideNav()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 22`** (1 nodes): `drizzle.config.js`
+- **Thin community `Community 22`** (2 nodes): `client.js`, `createClient()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 23`** (1 nodes): `eslint.config.mjs`
+- **Thin community `Community 23`** (2 nodes): `middleware.js`, `createClient()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 24`** (1 nodes): `next.config.mjs`
+- **Thin community `Community 24`** (1 nodes): `drizzle.config.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 25`** (1 nodes): `postcss.config.mjs`
+- **Thin community `Community 25`** (1 nodes): `eslint.config.mjs`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 26`** (1 nodes): `db-migrate-if-configured.mjs`
+- **Thin community `Community 26`** (1 nodes): `next.config.mjs`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 27`** (1 nodes): `data.js`
+- **Thin community `Community 27`** (1 nodes): `postcss.config.mjs`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 28`** (1 nodes): `social-data.js`
+- **Thin community `Community 28`** (1 nodes): `db-migrate-if-configured.mjs`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 29`** (1 nodes): `theme.js`
+- **Thin community `Community 29`** (1 nodes): `data.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 30`** (1 nodes): `schema.js`
+- **Thin community `Community 30`** (1 nodes): `social-data.js`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 31`** (1 nodes): `theme.js`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 32`** (1 nodes): `schema.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Are the 2 inferred relationships involving `POST()` (e.g. with `hasDatabaseUrl()` and `getDb()`) actually correct?**
-  _`POST()` has 2 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 3 inferred relationships involving `POST()` (e.g. with `createClient()` and `hasDatabaseUrl()`) actually correct?**
+  _`POST()` has 3 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 2 inferred relationships involving `createClient()` (e.g. with `middleware()` and `POST()`) actually correct?**
+  _`createClient()` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.05 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
