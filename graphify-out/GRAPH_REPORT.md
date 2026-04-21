@@ -1,7 +1,7 @@
 # Graph Report - C:\Users\gjram\sites\pickupgame-app  (2026-04-21)
 
 ## Corpus Check
-- 29 files · ~45,882 words
+- 29 files · ~46,034 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary

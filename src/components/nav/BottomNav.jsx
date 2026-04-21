@@ -19,16 +19,16 @@ export function BottomNav({ activeKey, onTabChange }) {
   const right = TABS.slice(2);
 
   return (
-    <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-line">
-      <div className="flex items-end h-16">
+    <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 border-t border-line bg-white/95 shadow-[0_-8px_24px_rgba(30,42,53,0.08)] backdrop-blur-md">
+      <div className="flex h-[4.75rem] items-end pb-[env(safe-area-inset-bottom)]">
         {left.map(tab => (
           <TabBtn key={tab.key} tab={tab} active={activeKey === tab.key} onTabChange={onTabChange} />
         ))}
 
         {/* Center create button */}
         <Link href="/host/create"
-          className="flex-1 flex flex-col items-center justify-end pb-2">
-          <div className="w-12 h-12 -mt-4 rounded-2xl bg-red shadow-md flex items-center justify-center">
+          className="flex-1 flex min-h-16 flex-col items-center justify-end pb-2">
+          <div className="flex h-13 w-13 -mt-4 items-center justify-center rounded-full bg-red shadow-lg ring-4 ring-white">
             <IconPlus size={26} stroke={2.5} style={{ color: '#fff' }} />
           </div>
         </Link>
@@ -42,11 +42,11 @@ export function BottomNav({ activeKey, onTabChange }) {
 }
 
 function TabBtn({ tab, active, onTabChange }) {
-  const cls = `flex-1 flex flex-col items-center justify-end gap-0.5 pb-2 pt-1 ${active ? 'text-navy' : 'text-muted'}`;
+  const cls = `flex-1 flex min-h-16 flex-col items-center justify-end gap-1 pb-2 pt-1 transition-colors ${active ? 'text-navy' : 'text-muted'}`;
   const inner = (
     <>
       <tab.Icon size={22} filled={active} />
-      <span className="font-display text-[9px] font-semibold tracking-widest uppercase">{tab.label}</span>
+      <span className="font-display text-[10px] font-semibold tracking-wider uppercase">{tab.label}</span>
     </>
   );
 

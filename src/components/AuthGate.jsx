@@ -28,11 +28,11 @@ function subscribeToAuthStore(callback) {
 
 function BrandMark() {
   return (
-    <div className="flex items-center gap-2">
-      <span className="flex h-9 w-9 items-center justify-center rounded-full border border-line bg-white text-navy">
+    <div className="flex min-w-0 items-center gap-2">
+      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line bg-white text-navy">
         <IconBaseball size={19} />
       </span>
-      <span className="font-display text-base font-bold tracking-widest text-navy uppercase">
+      <span className="mobile-brand font-display font-bold text-navy uppercase sm:text-base sm:tracking-widest">
         The <span className="text-red">PickUp</span> Club
       </span>
     </div>
@@ -92,7 +92,7 @@ export function AuthGate({ children }) {
 
   return (
     <main className="min-h-screen bg-cream text-navy">
-      <div className="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-4 py-5 sm:px-6 lg:px-8">
+      <div className="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-4 py-4 sm:px-6 sm:py-5 lg:px-8">
         <header className="flex items-center justify-between">
           <BrandMark />
           <span className="hidden items-center gap-2 rounded-full border border-line bg-white px-3 py-1.5 font-display text-[11px] font-semibold tracking-widest text-muted uppercase sm:inline-flex">
@@ -100,27 +100,27 @@ export function AuthGate({ children }) {
           </span>
         </header>
 
-        <section className="grid flex-1 items-center gap-8 py-8 lg:grid-cols-[0.95fr_1.05fr] lg:py-12">
-          <div className="space-y-6">
+        <section className="grid flex-1 items-start gap-5 py-5 sm:gap-8 sm:py-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:py-12">
+          <div className="order-2 space-y-4 sm:space-y-6 lg:order-1">
             <div className="max-w-xl">
               <p className="font-display text-xs font-semibold tracking-widest text-red uppercase">
                 Pick-up starts with a real roster
               </p>
-              <h1 className="mt-3 font-display text-4xl font-black leading-none tracking-wide text-navy uppercase sm:text-5xl">
+              <h1 className="mt-2 font-display text-3xl font-black leading-none tracking-wide text-navy uppercase sm:mt-3 sm:text-5xl">
                 Create your player profile before joining a game.
               </h1>
-              <p className="mt-4 max-w-lg text-base leading-7 text-muted">
+              <p className="mt-3 max-w-lg text-sm leading-6 text-muted sm:mt-4 sm:text-base sm:leading-7">
                 The PickUp Club uses signed-in player profiles for registrations, payments, host messages, and cancellation rules.
               </p>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-3">
+            <div className="mobile-slider -mx-4 flex gap-3 overflow-x-auto px-4 pb-1 sm:mx-0 sm:grid sm:grid-cols-3 sm:px-0">
               {[
                 ['Verified roster', 'Hosts know who is showing up.'],
                 ['Saved positions', 'Register faster next time.'],
                 ['Game messages', 'Keep every host thread in one place.'],
               ].map(([title, copy]) => (
-                <div key={title} className="rounded-xl border border-line bg-white p-4">
+                <div key={title} className="mobile-card w-[78%] shrink-0 rounded-xl border border-line bg-white p-4 sm:w-auto">
                   <span className="mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-green/10 text-green">
                     <IconCheck size={15} />
                   </span>
@@ -131,13 +131,13 @@ export function AuthGate({ children }) {
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="rounded-2xl border border-line bg-white p-5 shadow-sm sm:p-6">
-            <div className="mb-5 flex items-start justify-between gap-4">
+          <form onSubmit={handleSubmit} className="mobile-card order-1 rounded-2xl border border-line bg-white p-4 shadow-sm sm:p-6 lg:order-2">
+            <div className="mb-4 flex items-start justify-between gap-4 sm:mb-5">
               <div>
                 <p className="font-display text-[11px] font-semibold tracking-widest text-red uppercase">
                   Player Sign Up
                 </p>
-                <h2 className="mt-1 font-display text-2xl font-black tracking-wide text-navy uppercase">
+                <h2 className="mt-1 font-display text-xl font-black tracking-wide text-navy uppercase sm:text-2xl">
                   Join The PickUp Club
                 </h2>
               </div>
@@ -146,7 +146,7 @@ export function AuthGate({ children }) {
               </span>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3.5 sm:space-y-4">
               <Field label="Full name">
                 <input
                   className={inputClass()}
@@ -184,8 +184,8 @@ export function AuthGate({ children }) {
                   </div>
                 </Field>
 
-                <Field label="Signing up as">
-                  <div className="grid grid-cols-2 rounded-xl border border-line bg-cream p-1">
+              <Field label="Signing up as">
+                <div className="grid grid-cols-2 rounded-xl border border-line bg-cream p-1">
                     {[
                       ['player', 'Player'],
                       ['host', 'Player + Host'],
@@ -194,7 +194,7 @@ export function AuthGate({ children }) {
                         key={value}
                         type="button"
                         onClick={() => setForm(prev => ({ ...prev, accountType: value }))}
-                        className={`rounded-lg px-3 py-2 font-display text-[11px] font-semibold tracking-widest uppercase transition-colors ${
+                        className={`min-h-11 rounded-lg px-3 py-2 font-display text-[11px] font-semibold tracking-wider uppercase transition-colors ${
                           form.accountType === value ? 'bg-navy text-white shadow-sm' : 'text-muted hover:text-navy'
                         }`}
                       >
@@ -206,7 +206,7 @@ export function AuthGate({ children }) {
               </div>
 
               <Field label="Primary positions, up to 3">
-                <div className="grid grid-cols-9 gap-1.5">
+                <div className="grid grid-cols-5 gap-1.5 sm:grid-cols-9">
                   {POSITION_OPTIONS.map(pos => {
                     const active = form.positions.includes(pos);
                     return (
@@ -214,7 +214,7 @@ export function AuthGate({ children }) {
                         key={pos}
                         type="button"
                         onClick={() => togglePosition(pos)}
-                        className={`aspect-square rounded-lg border font-display text-[11px] font-bold tracking-wide transition-colors ${
+                        className={`min-h-11 rounded-lg border font-display text-[11px] font-bold tracking-wide transition-colors sm:aspect-square sm:min-h-0 ${
                           active
                             ? 'border-navy bg-navy text-white'
                             : 'border-line bg-cream text-muted hover:text-navy'
@@ -229,7 +229,7 @@ export function AuthGate({ children }) {
 
               <button
                 type="submit"
-                className="flex w-full items-center justify-center gap-2 rounded-xl bg-red px-5 py-3.5 font-display text-sm font-bold tracking-widest text-white uppercase shadow-sm transition-opacity hover:opacity-95"
+                className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-red px-5 py-3.5 font-display text-sm font-bold tracking-widest text-white uppercase shadow-sm transition-opacity hover:opacity-95"
               >
                 Create Account <IconCheck size={16} />
               </button>

@@ -29,9 +29,11 @@ html, body {
   background-color: #f5f0e8;
   color: #1e2a35;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 a { color: inherit; text-decoration: none; }
+button, input, textarea, select { font: inherit; }
 
 /* Utility: display font */
 .font-display { font-family: var(--font-display); }
@@ -46,14 +48,24 @@ a { color: inherit; text-decoration: none; }
 
 @media (max-width: 767px) {
   html {
-    font-size: 17px;
+    font-size: 16px;
   }
 
-  .text-\[9px\] { font-size: 10px; }
-  .text-\[10px\] { font-size: 11px; }
-  .text-\[11px\] { font-size: 12px; }
-  .text-\[12px\] { font-size: 13px; }
-  .text-xs { font-size: 0.8125rem; line-height: 1.15rem; }
-  .text-sm { font-size: 0.9375rem; line-height: 1.35rem; }
-  .text-base { font-size: 1.0625rem; line-height: 1.55rem; }
+  body {
+    overflow-x: hidden;
+  }
+
+  .mobile-safe-bottom {
+    padding-bottom: max(5.5rem, calc(5rem + env(safe-area-inset-bottom)));
+  }
+
+  .mobile-card {
+    border-radius: 14px;
+  }
+
+  .mobile-brand {
+    font-size: 0.78rem;
+    letter-spacing: 0.09em;
+    white-space: nowrap;
+  }
 }

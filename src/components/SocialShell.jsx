@@ -1338,7 +1338,7 @@ export function SocialShell({ activeTab = 'home' }) {
           <div className="max-w-2xl mx-auto px-4 h-14 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
               <IconBaseball size={18} />
-              <span className="font-display text-sm font-semibold tracking-widest text-navy uppercase">
+              <span className="mobile-brand font-display font-semibold text-navy uppercase sm:text-sm sm:tracking-widest">
                 The <span className="text-red">PickUp</span> Club
               </span>
             </Link>
@@ -1357,7 +1357,7 @@ export function SocialShell({ activeTab = 'home' }) {
         </header>
 
         {/* Tab content */}
-        <main className="max-w-2xl mx-auto px-4 pb-24 lg:pb-8 pt-4">
+        <main className="mobile-safe-bottom mx-auto max-w-2xl px-3 pt-3 sm:px-4 lg:pb-8 lg:pt-4">
           {activeTab === 'home'    && <TabHome />}
           {activeTab === 'find'    && <TabFind />}
           {activeTab === 'reel'    && <TabReel />}
