@@ -5,13 +5,20 @@ import { IconBaseball, IconCheck, IconLock, IconPin, IconUser } from '@/componen
 
 const STORAGE_KEY = 'the-pickup-club:user';
 const POSITION_OPTIONS = ['P', 'C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF'];
+let cachedUserRaw;
+let cachedUserSnapshot = null;
 
 function readStoredUser() {
   if (typeof window === 'undefined') return null;
   try {
     const saved = window.localStorage.getItem(STORAGE_KEY);
-    return saved ? JSON.parse(saved) : null;
+    if (saved === cachedUserRaw) return cachedUserSnapshot;
+    cachedUserRaw = saved;
+    cachedUserSnapshot = saved ? JSON.parse(saved) : null;
+    return cachedUserSnapshot;
   } catch {
+    cachedUserRaw = undefined;
+    cachedUserSnapshot = null;
     return null;
   }
 }
