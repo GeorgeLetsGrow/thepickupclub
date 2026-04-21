@@ -12,7 +12,7 @@
     "db:deploy": "node scripts/db-migrate-if-configured.mjs",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "netlify:build": "npm run db:deploy && npm run build"
+    "netlify:build": "npm run build"
   },
   "dependencies": {
     "@supabase/ssr": "^0.10.2",

@@ -52,7 +52,9 @@ Netlify uses:
 npm run netlify:build
 ```
 
-That runs `npm run db:deploy` before `next build`. If no database URL is configured, migration is skipped so local prototype builds still work.
+That runs `next build`. Run migrations separately with `npm run db:migrate` after adding or changing tables.
+
+Do not block every Netlify deploy on migrations. Supabase connection strings are easy to misconfigure, and a migration failure would otherwise take the whole site offline.
 
 ## Current Tables
 
