@@ -17,6 +17,9 @@
 /.next/
 /out/
 
+# graphify
+/graphify-out/cache/
+
 # production
 /build
 
@@ -39,3 +42,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local Netlify folder
+.netlify

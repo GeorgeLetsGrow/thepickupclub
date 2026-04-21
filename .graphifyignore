@@ -1,0 +1,8 @@
+node_modules/
+.next/
+.git/
+.claude/
+.codex/
+graphify-out/cache/
+package-lock.json
+*.log
