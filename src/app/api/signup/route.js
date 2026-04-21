@@ -1,60 +1,12 @@
 import { NextResponse } from 'next/server';
 import { eq } from 'drizzle-orm';
 import { getDb, hasDatabaseUrl, users } from '@/lib/db';
+import {
+  avatarFor, isEmail, passwordFromProfile, userPayload, validateProfile,
+} from '@/lib/auth-profile';
 import { createClient, hasSupabaseAuthEnv } from '@/utils/supabase/server';
 
-const AVATAR_COLORS = ['#1e2a35', '#d97757', '#4a7c59', '#8b6f47', '#2a4a6b', '#6b5b8e'];
-const POSITION_SET = new Set(['P', 'C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF']);
-
 export const runtime = 'nodejs';
-
-function normalizeContact(contact) {
-  return String(contact || '').trim().toLowerCase();
-}
-
-function isEmail(contact) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact);
-}
-
-function passwordFromProfile(profile) {
-  return `TPC-${profile.contact}-${profile.zip}`.slice(0, 72);
-}
-
-function avatarFor(name) {
-  const seed = String(name || 'player').split('').reduce((sum, char) => sum + char.charCodeAt(0), 0);
-  return AVATAR_COLORS[seed % AVATAR_COLORS.length];
-}
-
-function validateProfile(body) {
-  const name = String(body?.name || '').trim();
-  const contact = normalizeContact(body?.contact);
-  const zip = String(body?.zip || '').trim();
-  const accountType = body?.accountType === 'host' ? 'host' : 'player';
-  const positions = Array.isArray(body?.positions)
-    ? body.positions.filter(pos => POSITION_SET.has(pos)).slice(0, 3)
-    : [];
-
-  if (!name) return { error: 'Name is required.' };
-  if (!contact) return { error: 'Email or phone is required.' };
-  if (!zip) return { error: 'Home ZIP is required.' };
-  if (positions.length === 0) return { error: 'Pick at least one position.' };
-
-  return { name, contact, zip, accountType, positions };
-}
-
-function userPayload(user, persisted) {
-  return {
-    id: user.id,
-    name: user.name,
-    contact: user.contact,
-    zip: user.zip,
-    accountType: user.accountType,
-    positions: user.positions,
-    avatarColor: user.avatarColor,
-    authUserId: user.authUserId,
-    persisted,
-  };
-}
 
 export async function POST(request) {
   let profile;

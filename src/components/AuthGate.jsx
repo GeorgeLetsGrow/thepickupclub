@@ -56,6 +56,7 @@ function inputClass(extra = '') {
 
 export function AuthGate({ children }) {
   const user = React.useSyncExternalStore(subscribeToAuthStore, readStoredUser, () => null);
+  const [mode, setMode] = React.useState('signup');
   const [submitting, setSubmitting] = React.useState(false);
   const [error, setError] = React.useState('');
   const [statusMessage, setStatusMessage] = React.useState('');
@@ -77,6 +78,36 @@ export function AuthGate({ children }) {
     });
   }
 
+  async function submitAuthRequest(url, payload) {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const responseText = await response.text();
+    let data = {};
+    if (responseText) {
+      try {
+        data = JSON.parse(responseText);
+      } catch {
+        data = { error: responseText };
+      }
+    }
+
+    if (!response.ok) {
+      throw new Error(data?.error || 'Could not access your account.');
+    }
+
+    const savedUser = {
+      ...payload,
+      ...data.user,
+      dbPersisted: Boolean(data.persisted),
+    };
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(savedUser));
+    if (data.message) setStatusMessage(data.message);
+    window.dispatchEvent(new Event('pickupclub-auth'));
+  }
+
   async function handleSubmit(event) {
     event.preventDefault();
     setSubmitting(true);
@@ -90,40 +121,20 @@ export function AuthGate({ children }) {
       zip: form.zip.trim(),
       createdAt: new Date().toISOString(),
     };
-    if (!nextUser.name || !nextUser.contact || !nextUser.zip || nextUser.positions.length === 0) {
+    if (!nextUser.contact || !nextUser.zip) {
+      setError('Enter your email or phone and ZIP to continue.');
+      setSubmitting(false);
+      return;
+    }
+
+    if (mode === 'signup' && (!nextUser.name || nextUser.positions.length === 0)) {
       setError('Complete the required profile fields before continuing.');
       setSubmitting(false);
       return;
     }
 
     try {
-      const response = await fetch('/api/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(nextUser),
-      });
-      const responseText = await response.text();
-      let data = {};
-      if (responseText) {
-        try {
-          data = JSON.parse(responseText);
-        } catch {
-          data = { error: responseText };
-        }
-      }
-
-      if (!response.ok) {
-        throw new Error(data?.error || 'Could not create your account.');
-      }
-
-      const savedUser = {
-        ...nextUser,
-        ...data.user,
-        dbPersisted: Boolean(data.persisted),
-      };
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(savedUser));
-      if (data.message) setStatusMessage(data.message);
-      window.dispatchEvent(new Event('pickupclub-auth'));
+      await submitAuthRequest(mode === 'login' ? '/api/login' : '/api/signup', nextUser);
     } catch (err) {
       setError(err.message || 'Could not create your account.');
     } finally {
@@ -178,10 +189,10 @@ export function AuthGate({ children }) {
             <div className="mb-4 flex items-start justify-between gap-4 sm:mb-5">
               <div>
                 <p className="font-display text-[11px] font-semibold tracking-widest text-red uppercase">
-                  Player Sign Up
+                  {mode === 'login' ? 'Welcome Back' : 'Player Sign Up'}
                 </p>
                 <h2 className="mt-1 font-display text-xl font-black tracking-wide text-navy uppercase sm:text-2xl">
-                  Join The PickUp Club
+                  {mode === 'login' ? 'Log In' : 'Join The PickUp Club'}
                 </h2>
               </div>
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-cream text-navy">
@@ -190,16 +201,40 @@ export function AuthGate({ children }) {
             </div>
 
             <div className="space-y-3.5 sm:space-y-4">
-              <Field label="Full name">
-                <input
-                  className={inputClass()}
-                  value={form.name}
-                  onChange={event => setForm(prev => ({ ...prev, name: event.target.value }))}
-                  placeholder="Jamie Rodriguez"
-                  autoComplete="name"
-                  required
-                />
-              </Field>
+              <div className="grid grid-cols-2 rounded-xl border border-line bg-cream p-1">
+                {[
+                  ['signup', 'Create Account'],
+                  ['login', 'Log In'],
+                ].map(([value, label]) => (
+                  <button
+                    key={value}
+                    type="button"
+                    onClick={() => {
+                      setMode(value);
+                      setError('');
+                      setStatusMessage('');
+                    }}
+                    className={`min-h-11 rounded-lg px-3 py-2 font-display text-[11px] font-semibold tracking-wider uppercase transition-colors ${
+                      mode === value ? 'bg-navy text-white shadow-sm' : 'text-muted hover:text-navy'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+
+              {mode === 'signup' && (
+                <Field label="Full name">
+                  <input
+                    className={inputClass()}
+                    value={form.name}
+                    onChange={event => setForm(prev => ({ ...prev, name: event.target.value }))}
+                    placeholder="Jamie Rodriguez"
+                    autoComplete="name"
+                    required
+                  />
+                </Field>
+              )}
 
               <Field label="Email or phone">
                 <input
@@ -212,7 +247,7 @@ export function AuthGate({ children }) {
                 />
               </Field>
 
-              <div className="grid gap-4 sm:grid-cols-[1fr_1.25fr]">
+              <div className={`grid gap-4 ${mode === 'signup' ? 'sm:grid-cols-[1fr_1.25fr]' : ''}`}>
                 <Field label="Home ZIP">
                   <div className="relative">
                     <IconPin size={15} style={{ position: 'absolute', left: 14, top: 16, color: '#8a8178' }} />
@@ -227,55 +262,61 @@ export function AuthGate({ children }) {
                   </div>
                 </Field>
 
-              <Field label="Signing up as">
-                <div className="grid grid-cols-2 rounded-xl border border-line bg-cream p-1">
-                    {[
-                      ['player', 'Player'],
-                      ['host', 'Player + Host'],
-                    ].map(([value, label]) => (
-                      <button
-                        key={value}
-                        type="button"
-                        onClick={() => setForm(prev => ({ ...prev, accountType: value }))}
-                        className={`min-h-11 rounded-lg px-3 py-2 font-display text-[11px] font-semibold tracking-wider uppercase transition-colors ${
-                          form.accountType === value ? 'bg-navy text-white shadow-sm' : 'text-muted hover:text-navy'
-                        }`}
-                      >
-                        {label}
-                      </button>
-                    ))}
-                  </div>
-                </Field>
+                {mode === 'signup' && (
+                  <Field label="Signing up as">
+                    <div className="grid grid-cols-2 rounded-xl border border-line bg-cream p-1">
+                      {[
+                        ['player', 'Player'],
+                        ['host', 'Player + Host'],
+                      ].map(([value, label]) => (
+                        <button
+                          key={value}
+                          type="button"
+                          onClick={() => setForm(prev => ({ ...prev, accountType: value }))}
+                          className={`min-h-11 rounded-lg px-3 py-2 font-display text-[11px] font-semibold tracking-wider uppercase transition-colors ${
+                            form.accountType === value ? 'bg-navy text-white shadow-sm' : 'text-muted hover:text-navy'
+                          }`}
+                        >
+                          {label}
+                        </button>
+                      ))}
+                    </div>
+                  </Field>
+                )}
               </div>
 
-              <Field label="Primary positions, up to 3">
-                <div className="grid grid-cols-5 gap-1.5 sm:grid-cols-9">
-                  {POSITION_OPTIONS.map(pos => {
-                    const active = form.positions.includes(pos);
-                    return (
-                      <button
-                        key={pos}
-                        type="button"
-                        onClick={() => togglePosition(pos)}
-                        className={`min-h-11 rounded-lg border font-display text-[11px] font-bold tracking-wide transition-colors sm:aspect-square sm:min-h-0 ${
-                          active
-                            ? 'border-navy bg-navy text-white'
-                            : 'border-line bg-cream text-muted hover:text-navy'
-                        }`}
-                      >
-                        {pos}
-                      </button>
-                    );
-                  })}
-                </div>
-              </Field>
+              {mode === 'signup' && (
+                <Field label="Primary positions, up to 3">
+                  <div className="grid grid-cols-5 gap-1.5 sm:grid-cols-9">
+                    {POSITION_OPTIONS.map(pos => {
+                      const active = form.positions.includes(pos);
+                      return (
+                        <button
+                          key={pos}
+                          type="button"
+                          onClick={() => togglePosition(pos)}
+                          className={`min-h-11 rounded-lg border font-display text-[11px] font-bold tracking-wide transition-colors sm:aspect-square sm:min-h-0 ${
+                            active
+                              ? 'border-navy bg-navy text-white'
+                              : 'border-line bg-cream text-muted hover:text-navy'
+                          }`}
+                        >
+                          {pos}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </Field>
+              )}
 
               <button
                 type="submit"
                 disabled={submitting}
                 className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-red px-5 py-3.5 font-display text-sm font-bold tracking-widest text-white uppercase shadow-sm transition-opacity hover:opacity-95 disabled:cursor-not-allowed disabled:opacity-60"
               >
-                {submitting ? 'Creating Account...' : 'Create Account'} <IconCheck size={16} />
+                {submitting
+                  ? (mode === 'login' ? 'Logging In...' : 'Creating Account...')
+                  : (mode === 'login' ? 'Log In' : 'Create Account')} <IconCheck size={16} />
               </button>
 
               {error && (

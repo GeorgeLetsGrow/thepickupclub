@@ -1,12 +1,12 @@
 # Graph Report - C:\Users\gjram\sites\pickupgame-app  (2026-04-21)
 
 ## Corpus Check
-- 38 files · ~49,392 words
+- 40 files · ~49,854 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 213 nodes · 195 edges · 33 communities detected
-- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 5 edges (avg confidence: 0.8)
+- 215 nodes · 197 edges · 33 communities detected
+- Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 11 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Community Hubs (Navigation)
@@ -45,28 +45,28 @@
 - [[_COMMUNITY_Community 32|Community 32]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `POST()` - 10 edges
+1. `POST()` - 12 edges
 2. `createClient()` - 4 edges
-3. `validateProfile()` - 3 edges
-4. `initials()` - 3 edges
-5. `Avatar()` - 3 edges
-6. `hasSupabaseAuthEnv()` - 3 edges
-7. `middleware()` - 2 edges
-8. `normalizeContact()` - 2 edges
-9. `isEmail()` - 2 edges
-10. `passwordFromProfile()` - 2 edges
+3. `initials()` - 3 edges
+4. `Avatar()` - 3 edges
+5. `normalizeContact()` - 3 edges
+6. `validateProfile()` - 3 edges
+7. `hasSupabaseAuthEnv()` - 3 edges
+8. `middleware()` - 2 edges
+9. `InfoScreen()` - 2 edges
+10. `inputStyle()` - 2 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `POST()` --calls--> `isEmail()`  [INFERRED]
+  C:\Users\gjram\sites\pickupgame-app\src\app\api\signup\route.js → C:\Users\gjram\sites\pickupgame-app\src\lib\auth-profile.js
+- `POST()` --calls--> `passwordFromProfile()`  [INFERRED]
+  C:\Users\gjram\sites\pickupgame-app\src\app\api\signup\route.js → C:\Users\gjram\sites\pickupgame-app\src\lib\auth-profile.js
 - `POST()` --calls--> `hasDatabaseUrl()`  [INFERRED]
   C:\Users\gjram\sites\pickupgame-app\src\app\api\signup\route.js → C:\Users\gjram\sites\pickupgame-app\src\lib\db\index.js
-- `POST()` --calls--> `getDb()`  [INFERRED]
-  C:\Users\gjram\sites\pickupgame-app\src\app\api\signup\route.js → C:\Users\gjram\sites\pickupgame-app\src\lib\db\index.js
-- `middleware()` --calls--> `createClient()`  [INFERRED]
-  C:\Users\gjram\sites\pickupgame-app\middleware.js → C:\Users\gjram\sites\pickupgame-app\src\utils\supabase\server.js
-- `POST()` --calls--> `hasSupabaseAuthEnv()`  [INFERRED]
-  C:\Users\gjram\sites\pickupgame-app\src\app\api\signup\route.js → C:\Users\gjram\sites\pickupgame-app\src\utils\supabase\server.js
-- `POST()` --calls--> `createClient()`  [INFERRED]
-  C:\Users\gjram\sites\pickupgame-app\src\app\api\signup\route.js → C:\Users\gjram\sites\pickupgame-app\src\utils\supabase\server.js
+- `POST()` --calls--> `avatarFor()`  [INFERRED]
+  C:\Users\gjram\sites\pickupgame-app\src\app\api\signup\route.js → C:\Users\gjram\sites\pickupgame-app\src\lib\auth-profile.js
+- `POST()` --calls--> `userPayload()`  [INFERRED]
+  C:\Users\gjram\sites\pickupgame-app\src\app\api\signup\route.js → C:\Users\gjram\sites\pickupgame-app\src\lib\auth-profile.js
 
 ## Communities
 
@@ -83,8 +83,8 @@ Cohesion: 0.11
 Nodes (4): Avatar(), InfoScreen(), initials(), inputStyle()
 
 ### Community 3 - "Community 3"
-Cohesion: 0.2
-Nodes (12): getDb(), hasDatabaseUrl(), middleware(), avatarFor(), isEmail(), normalizeContact(), passwordFromProfile(), POST() (+4 more)
+Cohesion: 0.17
+Nodes (12): avatarFor(), isEmail(), normalizeContact(), passwordFromProfile(), userPayload(), validateProfile(), getDb(), hasDatabaseUrl() (+4 more)
 
 ### Community 4 - "Community 4"
 Cohesion: 0.12
@@ -239,8 +239,8 @@ Nodes (0):
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Are the 4 inferred relationships involving `POST()` (e.g. with `hasSupabaseAuthEnv()` and `createClient()`) actually correct?**
-  _`POST()` has 4 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 10 inferred relationships involving `POST()` (e.g. with `normalizeContact()` and `isEmail()`) actually correct?**
+  _`POST()` has 10 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 2 inferred relationships involving `createClient()` (e.g. with `middleware()` and `POST()`) actually correct?**
   _`createClient()` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **Should `Community 0` be split into smaller, more focused modules?**
