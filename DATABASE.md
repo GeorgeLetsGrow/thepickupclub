@@ -1,17 +1,19 @@
 # Database Setup
 
-The app is wired for Postgres through Netlify DB/Neon and Drizzle.
+The app is wired for Postgres through Neon and Drizzle.
+
+Netlify's old Neon extension/Netlify DB beta no longer creates new databases. Use a direct Neon database connection string and add it to Netlify as an environment variable.
 
 ## Environment
 
 Set one of these variables:
 
 ```env
-NETLIFY_DATABASE_URL="postgresql://..."
 DATABASE_URL="postgresql://..."
+NETLIFY_DATABASE_URL="postgresql://..."
 ```
 
-Netlify DB can create and inject `NETLIFY_DATABASE_URL` automatically when `@netlify/neon` is installed and the project builds on Netlify.
+Use Neon’s pooled connection string for Netlify/serverless deploys. The app checks `NETLIFY_DATABASE_URL` first, then `DATABASE_URL`.
 
 ## Commands
 
