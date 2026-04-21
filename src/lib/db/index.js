@@ -1,8 +1,8 @@
-import { neon } from '@neondatabase/serverless';
-import { drizzle } from 'drizzle-orm/neon-http';
+import { drizzle } from 'drizzle-orm/postgres-js';
+import postgres from 'postgres';
 import * as schema from './schema';
 
-const connectionString = process.env.NETLIFY_DATABASE_URL || process.env.DATABASE_URL;
+const connectionString = process.env.SUPABASE_DATABASE_URL || process.env.DATABASE_URL;
 
 let cachedDb;
 
@@ -12,11 +12,11 @@ export function hasDatabaseUrl() {
 
 export function getDb() {
   if (!connectionString) {
-    throw new Error('DATABASE_URL or NETLIFY_DATABASE_URL is not configured.');
+    throw new Error('SUPABASE_DATABASE_URL or DATABASE_URL is not configured.');
   }
 
   if (!cachedDb) {
-    const sql = neon(connectionString);
+    const sql = postgres(connectionString, { prepare: false });
     cachedDb = drizzle(sql, { schema });
   }
 

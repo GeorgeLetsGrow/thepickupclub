@@ -1,19 +1,38 @@
-# Database Setup
+# Supabase Database Setup
 
-The app is wired for Postgres through Neon and Drizzle.
+The app is wired for Supabase Postgres through Drizzle.
 
-Netlify's old Neon extension/Netlify DB beta no longer creates new databases. Use a direct Neon database connection string and add it to Netlify as an environment variable.
+Use Supabase's pooled Postgres connection string for Netlify/serverless deploys.
 
 ## Environment
 
-Set one of these variables:
+In Supabase:
+
+1. Open your project.
+2. Go to **Project Settings → Database**.
+3. Copy the **Connection pooling** URI.
+4. Use **Transaction** mode when available.
+5. Replace the password placeholder with your database password.
+
+In Netlify, set:
+
+```env
+SUPABASE_DATABASE_URL="postgresql://..."
+```
+
+Locally, add the same value to `.env.local` if you want local signup writes to hit Supabase:
+
+```env
+SUPABASE_DATABASE_URL="postgresql://..."
+```
+
+The app also accepts:
 
 ```env
 DATABASE_URL="postgresql://..."
-NETLIFY_DATABASE_URL="postgresql://..."
 ```
 
-Use Neon’s pooled connection string for Netlify/serverless deploys. The app checks `NETLIFY_DATABASE_URL` first, then `DATABASE_URL`.
+The app checks `SUPABASE_DATABASE_URL` first, then `DATABASE_URL`.
 
 ## Commands
 

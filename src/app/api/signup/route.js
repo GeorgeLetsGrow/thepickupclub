@@ -63,7 +63,7 @@ export async function POST(request) {
     return NextResponse.json({
       user: userPayload(user, false),
       persisted: false,
-      message: 'DATABASE_URL is not configured; using prototype local profile mode.',
+      message: 'SUPABASE_DATABASE_URL is not configured; using prototype local profile mode.',
     }, { status: 202 });
   }
 

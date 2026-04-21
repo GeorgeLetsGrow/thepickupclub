@@ -1,9 +1,9 @@
 import { spawnSync } from 'node:child_process';
 
-const databaseUrl = process.env.NETLIFY_DATABASE_URL || process.env.DATABASE_URL;
+const databaseUrl = process.env.SUPABASE_DATABASE_URL || process.env.DATABASE_URL;
 
 if (!databaseUrl) {
-  console.log('No DATABASE_URL or NETLIFY_DATABASE_URL found; skipping database migration.');
+  console.log('No SUPABASE_DATABASE_URL or DATABASE_URL found; skipping database migration.');
   process.exit(0);
 }
 
