@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="The PickUp Club">
+  <rect width="180" height="180" rx="40" fill="#111827"/>
+  <circle cx="90" cy="90" r="54" fill="#f6f7fb"/>
+  <path d="M46 54c17 10 27 23 27 36s-10 26-27 36" fill="none" stroke="#f04438" stroke-width="9" stroke-linecap="round"/>
+  <path d="M134 54c-17 10-27 23-27 36s10 26 27 36" fill="none" stroke="#f04438" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="90" cy="90" r="15" fill="#111827"/>
+  <path d="M84 90h12M90 84v12" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+</svg>
