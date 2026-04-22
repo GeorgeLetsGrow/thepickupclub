@@ -19,8 +19,8 @@ export function BottomNav({ activeKey, onTabChange }) {
   const right = TABS.slice(2);
 
   return (
-    <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 border-t border-line bg-white/95 shadow-[0_-8px_24px_rgba(30,42,53,0.08)] backdrop-blur-md">
-      <div className="flex h-[4.75rem] items-end pb-[env(safe-area-inset-bottom)]">
+    <nav className="mobile-bottom-nav lg:hidden border-t border-line bg-white/95 shadow-[0_-8px_24px_rgba(30,42,53,0.08)] backdrop-blur-md">
+      <div className="flex h-[4.75rem] items-end">
         {left.map(tab => (
           <TabBtn key={tab.key} tab={tab} active={activeKey === tab.key} onTabChange={onTabChange} />
         ))}
