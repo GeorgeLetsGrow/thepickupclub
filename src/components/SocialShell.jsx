@@ -57,7 +57,7 @@ function GameCard({ g, onManage }) {
     <button
       type="button"
       onClick={onManage}
-      className="bg-white rounded-2xl border border-line p-4 flex flex-col gap-2 shadow-sm h-full text-left transition-all hover:-translate-y-0.5 hover:border-navy/30 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2 focus:ring-offset-cream"
+      className="mobile-next-game-card bg-white rounded-2xl border border-line p-4 flex flex-col gap-2 shadow-sm h-full text-left transition-all hover:-translate-y-0.5 hover:border-navy/30 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2 focus:ring-offset-cream"
       aria-label={`Manage registration for ${g.title}`}
     >
       {/* Date / time row */}
@@ -178,15 +178,15 @@ function TabHome() {
   return (
     <div className="space-y-8">
       {/* YOUR NEXT GAMES */}
-      <section>
+      <section className="mobile-next-games">
         <SectionLabel>Your Next Games</SectionLabel>
         <div
           ref={sliderRef}
           onScroll={handleSliderScroll}
-          className="mobile-slider -mx-4 flex snap-x snap-mandatory overflow-x-auto scroll-smooth px-4 pb-1 lg:mx-0 lg:grid lg:grid-cols-2 lg:gap-4 lg:overflow-visible lg:px-0 lg:snap-none"
+          className="mobile-next-games-slider mobile-slider -mx-3 flex snap-x snap-mandatory overflow-x-auto scroll-smooth px-3 pb-1 sm:-mx-4 sm:px-4 lg:mx-0 lg:grid lg:grid-cols-2 lg:gap-4 lg:overflow-visible lg:px-0 lg:snap-none"
         >
           {MOCK_UPCOMING.map(g => (
-            <div key={g.id} className="w-full shrink-0 snap-center pr-3 last:pr-0 lg:w-full lg:shrink lg:pr-0">
+            <div key={g.id} className="mobile-next-games-slide w-full shrink-0 snap-center pr-3 last:pr-0 lg:w-full lg:shrink lg:pr-0">
               <GameCard g={g} onManage={() => setManagedGame(g)} />
             </div>
           ))}
