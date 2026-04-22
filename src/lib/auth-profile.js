@@ -1,5 +1,5 @@
 export const POSITION_SET = new Set(['P', 'C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF']);
-export const AVATAR_COLORS = ['#1e2a35', '#d97757', '#4a7c59', '#8b6f47', '#2a4a6b', '#6b5b8e'];
+export const AVATAR_COLORS = ['#111827', '#f97316', '#12805c', '#a16207', '#2563eb', '#0891b2'];
 
 export function normalizeContact(contact) {
   return String(contact || '').trim().toLowerCase();

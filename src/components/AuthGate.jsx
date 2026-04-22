@@ -278,7 +278,7 @@ export function AuthGate({ children }) {
               <div className={`grid gap-4 ${mode === 'signup' ? 'sm:grid-cols-[1fr_1.25fr]' : ''}`}>
                 <Field label="Home ZIP">
                   <div className="relative">
-                    <IconPin size={15} style={{ position: 'absolute', left: 14, top: 16, color: '#8a8178' }} />
+                    <IconPin size={15} style={{ position: 'absolute', left: 14, top: 16, color: '#667085' }} />
                     <input
                       className={inputClass('pl-10')}
                       value={form.zip}

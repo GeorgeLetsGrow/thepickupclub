@@ -2,17 +2,17 @@
 
 @theme {
   /* Brand palette */
-  --color-red:     #c4302b;
-  --color-red-dark:#a02622;
-  --color-navy:    #1e2a35;
-  --color-navy-lt: #2a3f50;
-  --color-cream:   #f5f0e8;
-  --color-sand:    #e8d4a2;
-  --color-green:   #4a7c59;
+  --color-red:     #f04438;
+  --color-red-dark:#d92d20;
+  --color-navy:    #111827;
+  --color-navy-lt: #243447;
+  --color-cream:   #f6f7fb;
+  --color-sand:    #dbeafe;
+  --color-green:   #12805c;
   --color-surface: #ffffff;
-  --color-line:    #e5e0d8;
-  --color-muted:   #8a8178;
-  --color-ink-soft:#4a4540;
+  --color-line:    #d9e2ec;
+  --color-muted:   #667085;
+  --color-ink-soft:#475467;
 
   /* Fonts */
   --font-display: var(--font-oswald), "Arial Narrow", Arial, sans-serif;
@@ -27,8 +27,8 @@ html, body {
   height: 100%;
   min-height: 100%;
   font-family: var(--font-body);
-  background-color: #f5f0e8;
-  color: #1e2a35;
+  background-color: #f6f7fb;
+  color: #111827;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

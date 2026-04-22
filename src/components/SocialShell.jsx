@@ -15,7 +15,7 @@ import {
 
 /* ─────────────────────────── Helper components ─────────────────────────── */
 
-function Avatar({ name = '', color = '#1e2a35', size = 36 }) {
+function Avatar({ name = '', color = '#111827', size = 36 }) {
   const initials = name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
   return (
     <div
@@ -37,7 +37,7 @@ function SectionLabel({ children }) {
 
 function RosterBar({ filled, cap }) {
   const pct = Math.round((filled / cap) * 100);
-  const color = pct >= 90 ? '#c4302b' : pct >= 70 ? '#e8a020' : '#4a7c59';
+  const color = pct >= 90 ? '#f04438' : pct >= 70 ? '#e8a020' : '#12805c';
   return (
     <div className="mt-3">
       <div className="flex justify-between items-center mb-1">
@@ -287,7 +287,7 @@ function ManageRegistrationDialog({ game, onClose }) {
 
           <div className="rounded-xl border border-line px-4 py-3">
             <div className="flex items-start gap-3">
-              <IconPin size={18} style={{ color: '#8a8178', marginTop: 2 }} />
+              <IconPin size={18} style={{ color: '#667085', marginTop: 2 }} />
               <div>
                 <p className="font-display text-sm font-bold tracking-wide text-navy uppercase">{game.field}</p>
                 <p className="mt-1 text-sm text-muted">
@@ -457,7 +457,7 @@ function RecapMedia({ post }) {
     <div
       className="relative w-full flex flex-col items-center justify-center overflow-hidden py-12 px-6"
       style={{
-        backgroundColor: post.statsBg || '#4a7c59',
+        backgroundColor: post.statsBg || '#12805c',
         backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.62)), url(${image})`,
         backgroundPosition: 'center',
         backgroundSize: 'cover',
@@ -734,7 +734,7 @@ function GoogleFieldsMap() {
         ) : (
           <div className="absolute inset-0 flex items-center justify-center bg-cream px-6 text-center">
             <div>
-              <IconMap size={36} style={{ color: '#8a8178', margin: '0 auto 12px' }} />
+              <IconMap size={36} style={{ color: '#667085', margin: '0 auto 12px' }} />
               <p className="font-display text-sm font-bold tracking-widest text-navy uppercase">
                 Add a Google Maps key
               </p>
@@ -968,15 +968,15 @@ function intensityStyle(val) {
   if (val === 0) return { bg: 'rgba(255,255,255,0.16)', size: 26, cls: 'text-white/35 font-medium' };
   if (val <= 1)  return { bg: 'rgba(255,255,255,0.38)', size: 28, cls: 'text-white/70 font-semibold' };
   if (val <= 2)  return { bg: 'rgba(255,255,255,0.65)', size: 30, cls: 'text-navy font-bold' };
-  if (val <= 4)  return { bg: '#e8d4a2',                size: 34, cls: 'text-navy font-bold' };
-  if (val <= 6)  return { bg: '#c4302b',                size: 36, cls: 'text-white font-bold' };
-  return           { bg: '#c4302b',                    size: 38, cls: 'text-white font-black' };
+  if (val <= 4)  return { bg: '#dbeafe',                size: 34, cls: 'text-navy font-bold' };
+  if (val <= 6)  return { bg: '#f04438',                size: 36, cls: 'text-white font-bold' };
+  return           { bg: '#f04438',                    size: 38, cls: 'text-white font-black' };
 }
 
 const TILE_COLORS = [
-  '#1e3a5f', '#4a7c59', '#c4302b',
-  '#8b6f47', '#1e2a35', '#2a4a6b',
-  '#d97757', '#4a7c59', '#1e3a5f',
+  '#1d4ed8', '#12805c', '#f04438',
+  '#a16207', '#111827', '#2563eb',
+  '#f97316', '#12805c', '#1d4ed8',
 ];
 const PROFILE_IMAGES = [
   'https://images.unsplash.com/photo-1508344928928-7165b67de128?auto=format&fit=crop&w=600&q=80',
@@ -1071,7 +1071,7 @@ function TabProfile() {
         <div className="bg-white rounded-2xl border border-line overflow-hidden shadow-sm">
           <div className="relative aspect-[16/9] w-full overflow-hidden bg-green">
             <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 56" preserveAspectRatio="none">
-              <rect width="100" height="56" fill="#4a7c59" />
+              <rect width="100" height="56" fill="#12805c" />
               <path d="M5 56 C20 18 80 18 95 56" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="1.2" />
               <path d="M50 56 L14 6" stroke="rgba(255,255,255,0.22)" strokeWidth="0.8" />
               <path d="M50 56 L86 6" stroke="rgba(255,255,255,0.22)" strokeWidth="0.8" />
@@ -1111,8 +1111,8 @@ function TabProfile() {
             <span className="font-display text-[10px] tracking-widest uppercase text-muted">Frequency:</span>
             {[
               { bg: 'rgba(74,124,89,0.3)', label: 'None' },
-              { bg: '#e8d4a2',             label: 'Occasional' },
-              { bg: '#c4302b',             label: 'Primary' },
+              { bg: '#dbeafe',             label: 'Occasional' },
+              { bg: '#f04438',             label: 'Primary' },
             ].map(l => (
               <div key={l.label} className="flex items-center gap-1.5">
                 <div className="w-3 h-3 rounded-full" style={{ background: l.bg }} />
@@ -1204,7 +1204,7 @@ const MOCK_THREADS = [
     title: 'Saturday Morning Scrimmage',
     subtitle: 'Team chat',
     participant: 'Marcus Chen',
-    avatar: '#d97757',
+    avatar: '#f97316',
     unread: 2,
     time: '9:42 AM',
     messages: [
@@ -1218,7 +1218,7 @@ const MOCK_THREADS = [
     title: 'Tony Russo',
     subtitle: 'Host · Tuesday Night Pickup',
     participant: 'Tony Russo',
-    avatar: '#2a4a6b',
+    avatar: '#2563eb',
     unread: 0,
     time: 'Yesterday',
     messages: [
@@ -1231,7 +1231,7 @@ const MOCK_THREADS = [
     title: 'Sunday Fundays',
     subtitle: 'Waitlist questions',
     participant: 'Jake P.',
-    avatar: '#8b6f47',
+    avatar: '#a16207',
     unread: 1,
     time: 'Mon',
     messages: [

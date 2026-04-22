@@ -40,7 +40,7 @@ export function SideNav({ activeKey, backHref, backLabel }) {
           return (
             <Link key={key} href={href}
               className={`flex items-center gap-3 px-4 py-2.5 rounded-xl font-display text-sm font-semibold tracking-widest uppercase transition-colors ${active ? 'bg-navy' : 'text-ink-soft hover:bg-cream hover:text-navy'}`}
-              style={active ? { backgroundColor: '#1e2a35', color: '#fff' } : undefined}
+              style={active ? { backgroundColor: '#111827', color: '#fff' } : undefined}
               aria-current={active ? 'page' : undefined}>
               <Icon size={18} filled={active} style={active ? { color: '#fff' } : undefined} />
               <span style={active ? { color: '#fff' } : undefined}>{label}</span>
@@ -53,8 +53,8 @@ export function SideNav({ activeKey, backHref, backLabel }) {
       <div className="p-4 space-y-2 border-t border-line">
         <Link href="/host/create"
           className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-red bg-white font-display text-sm font-semibold tracking-widest uppercase transition-colors hover:bg-cream"
-          style={{ color: '#c4302b' }}>
-          <IconPlus size={16} stroke={2.5} style={{ color: '#c4302b' }} /> New Game
+          style={{ color: '#f04438' }}>
+          <IconPlus size={16} stroke={2.5} style={{ color: '#f04438' }} /> New Game
         </Link>
         <Link href="/host"
           className="block text-center text-xs text-muted font-display tracking-wider uppercase hover:text-navy transition-colors">

@@ -10,7 +10,7 @@ export const users = pgTable('users', {
   zip: varchar('zip', { length: 12 }).notNull(),
   accountType: varchar('account_type', { length: 32 }).notNull().default('player'),
   positions: jsonb('positions').notNull().default([]),
-  avatarColor: varchar('avatar_color', { length: 24 }).notNull().default('#1e2a35'),
+  avatarColor: varchar('avatar_color', { length: 24 }).notNull().default('#111827'),
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
   updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
 }, table => ({

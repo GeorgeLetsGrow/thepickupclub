@@ -11,9 +11,9 @@ import {
 const SPORTS = [
   { id: 'baseball',  label: 'Baseball',        desc: 'Hardball · standard rules',     swatch: 'bg-navy',       short: 'BB' },
   { id: 'softball',  label: 'Softball',         desc: 'Slow-pitch · recreational',     swatch: 'bg-red',        short: 'SB' },
-  { id: 'fastpitch', label: 'Fastpitch',        desc: 'Softball · competitive',        swatch: 'bg-[#4a7c59]', short: 'FP' },
-  { id: 'tball',     label: 'T-Ball / Coach',   desc: 'Little kids · ages 4-7',        swatch: 'bg-[#8b6f47]', short: 'TB', impliedAge: 'kids' },
-  { id: 'wiffle',    label: 'Wiffle Ball',      desc: 'Backyard · chill',              swatch: 'bg-[#6b5b8e]', short: 'WB' },
+  { id: 'fastpitch', label: 'Fastpitch',        desc: 'Softball · competitive',        swatch: 'bg-[#12805c]', short: 'FP' },
+  { id: 'tball',     label: 'T-Ball / Coach',   desc: 'Little kids · ages 4-7',        swatch: 'bg-[#a16207]', short: 'TB', impliedAge: 'kids' },
+  { id: 'wiffle',    label: 'Wiffle Ball',      desc: 'Backyard · chill',              swatch: 'bg-[#0891b2]', short: 'WB' },
 ];
 
 // ─── Age options ──────────────────────────────────────────────────────────────
@@ -393,7 +393,7 @@ export default function CreateGamePage() {
                                   <span className="font-display text-sm font-semibold tracking-wide text-navy uppercase">
                                     {field.name}
                                   </span>
-                                  {selected && <IconCheck size={14} style={{ color: '#4a7c59' }} />}
+                                  {selected && <IconCheck size={14} style={{ color: '#12805c' }} />}
                                 </div>
                                 <div className="mt-0.5 text-xs text-muted">{field.address}</div>
                               </div>

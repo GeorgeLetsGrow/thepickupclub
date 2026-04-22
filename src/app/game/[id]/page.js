@@ -10,12 +10,12 @@ import {
 
 // ─── theme object for FieldDiagram ───────────────────────────────────────────
 const FD_THEME = {
-  fieldGreen: '#4a7c59',
-  fieldDirt:  '#c4a882',
-  primary:    '#1e2a35',
-  accent:     '#c4302b',
-  ink:        '#1e2a35',
-  muted:      '#8a8178',
+  fieldGreen: '#12805c',
+  fieldDirt:  '#c9975b',
+  primary:    '#111827',
+  accent:     '#f04438',
+  ink:        '#111827',
+  muted:      '#667085',
   display:    'var(--font-oswald), "Arial Narrow", sans-serif',
   radius:     '10px',
 };
@@ -56,7 +56,7 @@ const CONFETTI_DOTS = Array.from({ length: 22 }, (_, i) => ({
   left: `${(i / 22) * 100}%`,
   size: 6 + (i % 3) * 3,
   radius: i % 2 === 0 ? '50%' : 2,
-  background: ['#c4302b', '#f5c842', '#fff', '#4a7c59', '#a0c8e8'][i % 5],
+  background: ['#f04438', '#f59e0b', '#fff', '#12805c', '#a0c8e8'][i % 5],
   opacity: 0.55 + (i % 4) * 0.1,
   transform: `rotate(${i * 17}deg)`,
 }));
@@ -70,7 +70,7 @@ function Avatar({ name, color, size = 36 }) {
   return (
     <div style={{
       width: size, height: size, borderRadius: '50%',
-      background: color || '#8a8178',
+      background: color || '#667085',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       color: '#fff', fontSize: size * 0.32, fontWeight: 700,
       flexShrink: 0, border: '2px solid #fff',
@@ -94,9 +94,9 @@ function AvatarStack({ players, max = 5 }) {
         <div style={{
           marginLeft: -10, zIndex: 0,
           width: 34, height: 34, borderRadius: '50%',
-          background: '#e5e0d8', border: '2px solid #fff',
+          background: '#d9e2ec', border: '2px solid #fff',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: 11, fontWeight: 700, color: '#8a8178',
+          fontSize: 11, fontWeight: 700, color: '#667085',
         }}>
           +{rest}
         </div>
@@ -119,7 +119,7 @@ function StepDots({ screen }) {
       {active.map((s, i) => (
         <div key={s} style={{
           width: i === activeIdx ? 20 : 8, height: 8, borderRadius: 4,
-          background: i === activeIdx ? '#c4302b' : i < activeIdx ? '#4a7c59' : '#e5e0d8',
+          background: i === activeIdx ? '#f04438' : i < activeIdx ? '#12805c' : '#d9e2ec',
           transition: 'all 0.2s',
         }} />
       ))}
@@ -133,7 +133,7 @@ function PageHeader({ game, screen, onBack }) {
   return (
     <header style={{
       position: 'sticky', top: 0, zIndex: 50,
-      background: '#1e2a35', color: '#fff',
+      background: '#111827', color: '#fff',
       borderBottom: '1px solid rgba(255,255,255,0.08)',
     }}>
       <div style={{
@@ -179,12 +179,12 @@ function LandingScreen({ game, players, onNext }) {
   return (
     <div>
       {/* Hero band */}
-      <div style={{ background: '#1e2a35', color: '#fff', padding: '28px 0 24px' }}>
+      <div style={{ background: '#111827', color: '#fff', padding: '28px 0 24px' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 20px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, flexWrap: 'wrap' }}>
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
-                <IconBaseball size={16} style={{ color: '#c4302b', opacity: 0.9 }} />
+                <IconBaseball size={16} style={{ color: '#f04438', opacity: 0.9 }} />
                 <span style={{ fontSize: 11, letterSpacing: 1.5, textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)', fontFamily: 'var(--font-display, sans-serif)' }}>
                   Pickup Game
                 </span>
@@ -215,7 +215,7 @@ function LandingScreen({ game, players, onNext }) {
               alignItems: 'center', gap: 3, flexShrink: 0,
             }}>
               {game.weather.condition === 'Sunny'
-                ? <IconSun size={22} style={{ color: '#f5c842' }} />
+                ? <IconSun size={22} style={{ color: '#f59e0b' }} />
                 : <IconCloud size={22} style={{ color: '#a0b8c8' }} />
               }
               <span style={{ fontSize: 20, fontWeight: 700, fontFamily: 'var(--font-display, sans-serif)' }}>
@@ -239,16 +239,16 @@ function LandingScreen({ game, players, onNext }) {
           className="landing-grid"
         >
           {/* Left: field */}
-          <div style={{ background: '#fff', borderRadius: 14, overflow: 'hidden', border: '1px solid #e5e0d8' }}>
+          <div style={{ background: '#fff', borderRadius: 14, overflow: 'hidden', border: '1px solid #d9e2ec' }}>
             <div style={{
               padding: '14px 16px 10px',
               fontFamily: 'var(--font-display, sans-serif)', fontSize: 11,
               letterSpacing: 1.2, textTransform: 'uppercase',
-              color: '#8a8178', borderBottom: '1px solid #e5e0d8',
+              color: '#667085', borderBottom: '1px solid #d9e2ec',
               display: 'flex', justifyContent: 'space-between',
             }}>
               <span>Live Field</span>
-              <span style={{ color: '#4a7c59', fontWeight: 700 }}>
+              <span style={{ color: '#12805c', fontWeight: 700 }}>
                 {players.length} on the diamond
               </span>
             </div>
@@ -265,24 +265,24 @@ function LandingScreen({ game, players, onNext }) {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
 
             {/* Roster count card */}
-            <div style={{ background: '#fff', borderRadius: 14, padding: '20px 24px', border: '1px solid #e5e0d8' }}>
+            <div style={{ background: '#fff', borderRadius: 14, padding: '20px 24px', border: '1px solid #d9e2ec' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 14 }}>
                 <div>
                   <div style={{
                     fontFamily: 'var(--font-display, sans-serif)',
-                    fontSize: 52, fontWeight: 700, lineHeight: 1, color: '#1e2a35',
+                    fontSize: 52, fontWeight: 700, lineHeight: 1, color: '#111827',
                   }}>
                     {players.length}
-                    <span style={{ fontSize: 22, color: '#8a8178', fontWeight: 400 }}>/{game.playerCap}</span>
+                    <span style={{ fontSize: 22, color: '#667085', fontWeight: 400 }}>/{game.playerCap}</span>
                   </div>
-                  <div style={{ fontSize: 13, color: '#8a8178', marginTop: 2 }}>players signed up</div>
+                  <div style={{ fontSize: 13, color: '#667085', marginTop: 2 }}>players signed up</div>
                 </div>
                 <div style={{ textAlign: 'right' }}>
                   <div style={{
-                    background: spotsLeft <= 3 ? '#fff5f5' : '#f0f9f3',
-                    color: spotsLeft <= 3 ? '#c4302b' : '#4a7c59',
+                    background: spotsLeft <= 3 ? '#fff1f2' : '#ecfdf5',
+                    color: spotsLeft <= 3 ? '#f04438' : '#12805c',
                     borderRadius: 20, padding: '4px 12px', fontSize: 12, fontWeight: 700,
-                    border: `1px solid ${spotsLeft <= 3 ? '#fcd5d3' : '#b8dfc6'}`,
+                    border: `1px solid ${spotsLeft <= 3 ? '#fecdd3' : '#bbf7d0'}`,
                   }}>
                     {spotsLeft} spot{spotsLeft !== 1 ? 's' : ''} left
                   </div>
@@ -290,10 +290,10 @@ function LandingScreen({ game, players, onNext }) {
               </div>
 
               {/* Progress bar */}
-              <div style={{ background: '#f0ece4', borderRadius: 4, height: 6, marginBottom: 14 }}>
+              <div style={{ background: '#edf2f7', borderRadius: 4, height: 6, marginBottom: 14 }}>
                 <div style={{
                   width: `${pct}%`, height: '100%', borderRadius: 4,
-                  background: pct > 80 ? '#c4302b' : '#4a7c59',
+                  background: pct > 80 ? '#f04438' : '#12805c',
                   transition: 'width 0.3s',
                 }} />
               </div>
@@ -301,7 +301,7 @@ function LandingScreen({ game, players, onNext }) {
               {/* Avatar stack */}
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <AvatarStack players={players} max={6} />
-                <div style={{ fontSize: 12, color: '#8a8178' }}>
+                <div style={{ fontSize: 12, color: '#667085' }}>
                   {game.skill}
                 </div>
               </div>
@@ -310,30 +310,30 @@ function LandingScreen({ game, players, onNext }) {
             {/* Host card */}
             <div style={{
               background: '#fff', borderRadius: 14, padding: '16px 20px',
-              border: '1px solid #e5e0d8', display: 'flex', alignItems: 'center', gap: 14,
+              border: '1px solid #d9e2ec', display: 'flex', alignItems: 'center', gap: 14,
             }}>
               <Avatar name={game.host} color={game.hostAvatar} size={44} />
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 12, color: '#8a8178', marginBottom: 2 }}>Organized by</div>
-                <div style={{ fontWeight: 700, fontSize: 15, color: '#1e2a35' }}>{game.host}</div>
+                <div style={{ fontSize: 12, color: '#667085', marginBottom: 2 }}>Organized by</div>
+                <div style={{ fontWeight: 700, fontSize: 15, color: '#111827' }}>{game.host}</div>
               </div>
               <div style={{
                 display: 'flex', alignItems: 'center', gap: 6,
-                background: '#f5f0e8', borderRadius: 8, padding: '6px 12px',
+                background: '#f6f7fb', borderRadius: 8, padding: '6px 12px',
               }}>
-                <IconDollar size={14} style={{ color: '#4a7c59' }} />
-                <span style={{ fontWeight: 700, fontSize: 16, color: '#1e2a35' }}>${game.cost}</span>
-                <span style={{ fontSize: 11, color: '#8a8178' }}>per player</span>
+                <IconDollar size={14} style={{ color: '#12805c' }} />
+                <span style={{ fontWeight: 700, fontSize: 16, color: '#111827' }}>${game.cost}</span>
+                <span style={{ fontSize: 11, color: '#667085' }}>per player</span>
               </div>
             </div>
 
             {/* Notes */}
             {game.notes && (
               <div style={{
-                background: '#faf6ec', borderRadius: 12, padding: '14px 16px',
-                border: '1px solid #e8d4a2', fontSize: 13, color: '#4a4540', lineHeight: 1.6,
+                background: '#f8fafc', borderRadius: 12, padding: '14px 16px',
+                border: '1px solid #dbeafe', fontSize: 13, color: '#475467', lineHeight: 1.6,
               }}>
-                <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 0.8, textTransform: 'uppercase', color: '#8a8178', marginBottom: 6 }}>
+                <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 0.8, textTransform: 'uppercase', color: '#667085', marginBottom: 6 }}>
                   Notes from the host
                 </div>
                 {game.notes}
@@ -344,7 +344,7 @@ function LandingScreen({ game, players, onNext }) {
             <button
               onClick={onNext}
               style={{
-                background: '#c4302b', color: '#fff',
+                background: '#f04438', color: '#fff',
                 border: 'none', borderRadius: 12, padding: '16px 28px',
                 fontFamily: 'var(--font-display, sans-serif)',
                 fontSize: 17, fontWeight: 700, letterSpacing: 1.5,
@@ -366,7 +366,7 @@ function LandingScreen({ game, players, onNext }) {
               Claim My Spot
             </button>
 
-            <div style={{ textAlign: 'center', fontSize: 12, color: '#8a8178' }}>
+            <div style={{ textAlign: 'center', fontSize: 12, color: '#667085' }}>
               <IconPin size={12} style={{ verticalAlign: 'middle', marginRight: 4 }} />
               {game.fieldAddress}
             </div>
@@ -395,12 +395,12 @@ function PositionScreen({ players, selectedPos, onSelect, onNext, onBack }) {
       <div style={{ textAlign: 'center', marginBottom: 28 }}>
         <h2 style={{
           fontFamily: 'var(--font-display, sans-serif)',
-          fontSize: 28, fontWeight: 700, color: '#1e2a35',
+          fontSize: 28, fontWeight: 700, color: '#111827',
           letterSpacing: 0.3, margin: '0 0 8px',
         }}>
           Pick Your Position
         </h2>
-        <p style={{ color: '#8a8178', fontSize: 14, margin: 0 }}>
+        <p style={{ color: '#667085', fontSize: 14, margin: 0 }}>
           Select an open spot on the field
         </p>
       </div>
@@ -410,13 +410,13 @@ function PositionScreen({ players, selectedPos, onSelect, onNext, onBack }) {
           <div style={{
             fontFamily: 'var(--font-display, sans-serif)',
             fontSize: 12, fontWeight: 700, letterSpacing: 1.5,
-            textTransform: 'uppercase', color: '#8a8178',
+            textTransform: 'uppercase', color: '#667085',
             marginBottom: 10, paddingLeft: 2,
             display: 'flex', alignItems: 'center', gap: 8,
           }}>
             <div style={{
               width: 8, height: 8, borderRadius: '50%',
-              background: team === 'Home' ? '#c4302b' : '#1e2a35',
+              background: team === 'Home' ? '#f04438' : '#111827',
             }} />
             {team} Team
           </div>
@@ -436,8 +436,8 @@ function PositionScreen({ players, selectedPos, onSelect, onNext, onBack }) {
                   disabled={taken}
                   onClick={() => !taken && onSelect(pos)}
                   style={{
-                    background: isSelected ? '#1e2a35' : taken ? '#f5f0e8' : '#fff',
-                    border: `2px solid ${isSelected ? '#1e2a35' : taken ? '#e5e0d8' : '#e5e0d8'}`,
+                    background: isSelected ? '#111827' : taken ? '#f6f7fb' : '#fff',
+                    border: `2px solid ${isSelected ? '#111827' : taken ? '#d9e2ec' : '#d9e2ec'}`,
                     borderRadius: 10, padding: '12px 10px',
                     cursor: taken ? 'not-allowed' : 'pointer',
                     textAlign: 'left', transition: 'all 0.15s',
@@ -446,13 +446,13 @@ function PositionScreen({ players, selectedPos, onSelect, onNext, onBack }) {
                   }}
                   onMouseEnter={e => {
                     if (!taken && !isSelected) {
-                      e.currentTarget.style.borderColor = '#1e2a35';
+                      e.currentTarget.style.borderColor = '#111827';
                       e.currentTarget.style.boxShadow = '0 2px 8px rgba(30,42,53,0.12)';
                     }
                   }}
                   onMouseLeave={e => {
                     if (!taken && !isSelected) {
-                      e.currentTarget.style.borderColor = '#e5e0d8';
+                      e.currentTarget.style.borderColor = '#d9e2ec';
                       e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.04)';
                     }
                   }}
@@ -461,13 +461,13 @@ function PositionScreen({ players, selectedPos, onSelect, onNext, onBack }) {
                     <span style={{
                       fontFamily: 'var(--font-display, sans-serif)',
                       fontSize: 20, fontWeight: 700,
-                      color: isSelected ? '#fff' : taken ? '#8a8178' : '#1e2a35',
+                      color: isSelected ? '#fff' : taken ? '#667085' : '#111827',
                     }}>
                       {pos.short}
                     </span>
                     {isSelected && (
                       <span style={{
-                        background: '#c4302b', borderRadius: '50%',
+                        background: '#f04438', borderRadius: '50%',
                         width: 20, height: 20, display: 'flex',
                         alignItems: 'center', justifyContent: 'center',
                       }}>
@@ -480,17 +480,17 @@ function PositionScreen({ players, selectedPos, onSelect, onNext, onBack }) {
                   </div>
                   <div style={{
                     fontSize: 12, fontWeight: 500,
-                    color: isSelected ? 'rgba(255,255,255,0.8)' : taken ? '#8a8178' : '#4a4540',
+                    color: isSelected ? 'rgba(255,255,255,0.8)' : taken ? '#667085' : '#475467',
                   }}>
                     {pos.name}
                   </div>
                   <div style={{ marginTop: 5, fontSize: 11 }}>
                     {taken ? (
-                      <span style={{ color: '#c4302b', fontWeight: 600 }}>
+                      <span style={{ color: '#f04438', fontWeight: 600 }}>
                         Taken {takenPlayer ? `· ${takenPlayer.name.split(' ')[0]}` : ''}
                       </span>
                     ) : (
-                      <span style={{ color: '#4a7c59', fontWeight: 600 }}>
+                      <span style={{ color: '#12805c', fontWeight: 600 }}>
                         ✓ Open
                       </span>
                     )}
@@ -505,8 +505,8 @@ function PositionScreen({ players, selectedPos, onSelect, onNext, onBack }) {
       {/* Confirm bar */}
       <div style={{
         position: 'fixed', bottom: 0, left: 0, right: 0,
-        background: selectedPos ? '#1e2a35' : '#fff',
-        borderTop: '1px solid #e5e0d8',
+        background: selectedPos ? '#111827' : '#fff',
+        borderTop: '1px solid #d9e2ec',
         padding: '14px 20px',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12,
         transition: 'background 0.2s',
@@ -516,9 +516,9 @@ function PositionScreen({ players, selectedPos, onSelect, onNext, onBack }) {
           onClick={onBack}
           style={{
             background: 'transparent',
-            border: `1px solid ${selectedPos ? 'rgba(255,255,255,0.25)' : '#e5e0d8'}`,
+            border: `1px solid ${selectedPos ? 'rgba(255,255,255,0.25)' : '#d9e2ec'}`,
             borderRadius: 8, padding: '10px 16px', cursor: 'pointer',
-            color: selectedPos ? '#fff' : '#8a8178', fontSize: 13,
+            color: selectedPos ? '#fff' : '#667085', fontSize: 13,
             display: 'flex', alignItems: 'center', gap: 6,
           }}
         >
@@ -530,7 +530,7 @@ function PositionScreen({ players, selectedPos, onSelect, onNext, onBack }) {
             onClick={onNext}
             style={{
               flex: 1, maxWidth: 340,
-              background: '#c4302b', color: '#fff',
+              background: '#f04438', color: '#fff',
               border: 'none', borderRadius: 10, padding: '12px 20px',
               fontFamily: 'var(--font-display, sans-serif)',
               fontSize: 15, fontWeight: 700, letterSpacing: 0.8,
@@ -541,7 +541,7 @@ function PositionScreen({ players, selectedPos, onSelect, onNext, onBack }) {
             Play {selectedPos.name}? → Continue
           </button>
         ) : (
-          <div style={{ color: '#8a8178', fontSize: 13 }}>
+          <div style={{ color: '#667085', fontSize: 13 }}>
             Select a position above
           </div>
         )}
@@ -557,24 +557,24 @@ function InfoScreen({ form, onChange, onNext, onBack }) {
   return (
     <div style={{ maxWidth: 520, margin: '0 auto', padding: '32px 20px 60px' }}>
       <div style={{
-        background: '#fff', borderRadius: 16, border: '1px solid #e5e0d8',
+        background: '#fff', borderRadius: 16, border: '1px solid #d9e2ec',
         padding: '28px 28px 32px', boxShadow: '0 2px 12px rgba(30,42,53,0.06)',
       }}>
         <h2 style={{
           fontFamily: 'var(--font-display, sans-serif)',
-          fontSize: 26, fontWeight: 700, color: '#1e2a35',
+          fontSize: 26, fontWeight: 700, color: '#111827',
           margin: '0 0 6px', letterSpacing: 0.3,
         }}>
           Your Info
         </h2>
-        <p style={{ color: '#8a8178', fontSize: 13, margin: '0 0 24px' }}>
+        <p style={{ color: '#667085', fontSize: 13, margin: '0 0 24px' }}>
           Tell the organizer a bit about yourself
         </p>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
           {/* Full Name */}
           <label style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-            <span style={{ fontSize: 12, fontWeight: 700, color: '#4a4540', letterSpacing: 0.5, textTransform: 'uppercase' }}>
+            <span style={{ fontSize: 12, fontWeight: 700, color: '#475467', letterSpacing: 0.5, textTransform: 'uppercase' }}>
               Full Name *
             </span>
             <input
@@ -588,7 +588,7 @@ function InfoScreen({ form, onChange, onNext, onBack }) {
 
           {/* Phone */}
           <label style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-            <span style={{ fontSize: 12, fontWeight: 700, color: '#4a4540', letterSpacing: 0.5, textTransform: 'uppercase' }}>
+            <span style={{ fontSize: 12, fontWeight: 700, color: '#475467', letterSpacing: 0.5, textTransform: 'uppercase' }}>
               Phone Number *
             </span>
             <input
@@ -598,12 +598,12 @@ function InfoScreen({ form, onChange, onNext, onBack }) {
               placeholder="(555) 000-0000"
               style={inputStyle(form.phone)}
             />
-            <span style={{ fontSize: 11, color: '#8a8178' }}>Used to send game-day updates</span>
+            <span style={{ fontSize: 11, color: '#667085' }}>Used to send game-day updates</span>
           </label>
 
           {/* Age */}
           <label style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-            <span style={{ fontSize: 12, fontWeight: 700, color: '#4a4540', letterSpacing: 0.5, textTransform: 'uppercase' }}>
+            <span style={{ fontSize: 12, fontWeight: 700, color: '#475467', letterSpacing: 0.5, textTransform: 'uppercase' }}>
               Age *
             </span>
             <input
@@ -618,7 +618,7 @@ function InfoScreen({ form, onChange, onNext, onBack }) {
 
           {/* Skill Level */}
           <div>
-            <div style={{ fontSize: 12, fontWeight: 700, color: '#4a4540', letterSpacing: 0.5, textTransform: 'uppercase', marginBottom: 10 }}>
+            <div style={{ fontSize: 12, fontWeight: 700, color: '#475467', letterSpacing: 0.5, textTransform: 'uppercase', marginBottom: 10 }}>
               Skill Level *
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
@@ -629,8 +629,8 @@ function InfoScreen({ form, onChange, onNext, onBack }) {
                     key={s.id}
                     style={{
                       display: 'flex', flexDirection: 'column', gap: 2,
-                      background: selected ? '#1e2a35' : '#f5f0e8',
-                      border: `2px solid ${selected ? '#1e2a35' : '#e5e0d8'}`,
+                      background: selected ? '#111827' : '#f6f7fb',
+                      border: `2px solid ${selected ? '#111827' : '#d9e2ec'}`,
                       borderRadius: 10, padding: '10px 12px',
                       cursor: 'pointer', transition: 'all 0.15s',
                     }}
@@ -646,11 +646,11 @@ function InfoScreen({ form, onChange, onNext, onBack }) {
                     <span style={{
                       fontFamily: 'var(--font-display, sans-serif)',
                       fontSize: 15, fontWeight: 700,
-                      color: selected ? '#fff' : '#1e2a35',
+                      color: selected ? '#fff' : '#111827',
                     }}>
                       {s.label}
                     </span>
-                    <span style={{ fontSize: 11, color: selected ? 'rgba(255,255,255,0.65)' : '#8a8178' }}>
+                    <span style={{ fontSize: 11, color: selected ? 'rgba(255,255,255,0.65)' : '#667085' }}>
                       {s.desc}
                     </span>
                   </label>
@@ -686,31 +686,31 @@ function WaiverScreen({ form, onChange, onNext, onBack }) {
   return (
     <div style={{ maxWidth: 520, margin: '0 auto', padding: '32px 20px 60px' }}>
       <div style={{
-        background: '#fff', borderRadius: 16, border: '1px solid #e5e0d8',
+        background: '#fff', borderRadius: 16, border: '1px solid #d9e2ec',
         padding: '28px 28px 32px', boxShadow: '0 2px 12px rgba(30,42,53,0.06)',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
-          <IconShield size={22} style={{ color: '#c4302b' }} />
+          <IconShield size={22} style={{ color: '#f04438' }} />
           <h2 style={{
             fontFamily: 'var(--font-display, sans-serif)',
-            fontSize: 26, fontWeight: 700, color: '#1e2a35',
+            fontSize: 26, fontWeight: 700, color: '#111827',
             margin: 0, letterSpacing: 0.3,
           }}>
             Liability Waiver
           </h2>
         </div>
-        <p style={{ color: '#8a8178', fontSize: 13, margin: '0 0 20px' }}>
+        <p style={{ color: '#667085', fontSize: 13, margin: '0 0 20px' }}>
           Please read and agree before continuing
         </p>
 
         <div style={{
-          background: '#f5f0e8', borderRadius: 10, padding: '18px 20px',
-          border: '1px solid #e5e0d8', marginBottom: 20,
+          background: '#f6f7fb', borderRadius: 10, padding: '18px 20px',
+          border: '1px solid #d9e2ec', marginBottom: 20,
           maxHeight: 260, overflowY: 'auto',
         }}>
           {WAIVER_PARAGRAPHS.map((p, i) => (
             <p key={i} style={{
-              fontSize: 13, color: '#4a4540', lineHeight: 1.7,
+              fontSize: 13, color: '#475467', lineHeight: 1.7,
               margin: i === 0 ? 0 : '14px 0 0',
             }}>
               {p}
@@ -721,15 +721,15 @@ function WaiverScreen({ form, onChange, onNext, onBack }) {
         <label style={{
           display: 'flex', alignItems: 'flex-start', gap: 12,
           cursor: 'pointer', padding: '14px 16px',
-          background: form.waiver ? '#f0f9f3' : '#fafaf8',
-          border: `2px solid ${form.waiver ? '#4a7c59' : '#e5e0d8'}`,
+          background: form.waiver ? '#ecfdf5' : '#f8fafc',
+          border: `2px solid ${form.waiver ? '#12805c' : '#d9e2ec'}`,
           borderRadius: 10, marginBottom: 24,
           transition: 'all 0.15s',
         }}>
           <div style={{
             width: 22, height: 22, borderRadius: 6, flexShrink: 0,
-            background: form.waiver ? '#4a7c59' : '#fff',
-            border: `2px solid ${form.waiver ? '#4a7c59' : '#d0cbc3'}`,
+            background: form.waiver ? '#12805c' : '#fff',
+            border: `2px solid ${form.waiver ? '#12805c' : '#cbd5e1'}`,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             marginTop: 1, transition: 'all 0.15s',
           }}>
@@ -741,7 +741,7 @@ function WaiverScreen({ form, onChange, onNext, onBack }) {
             onChange={e => onChange({ waiver: e.target.checked })}
             style={{ display: 'none' }}
           />
-          <span style={{ fontSize: 13, color: '#4a4540', lineHeight: 1.5 }}>
+          <span style={{ fontSize: 13, color: '#475467', lineHeight: 1.5 }}>
             I have read and agree to the liability waiver above. I understand the risks involved in participating in this pickup game.
           </span>
         </label>
@@ -782,30 +782,30 @@ function PaymentScreen({ game, selectedPos, form, onNext, onBack }) {
   return (
     <div style={{ maxWidth: 520, margin: '0 auto', padding: '32px 20px 60px' }}>
       <div style={{
-        background: '#fff', borderRadius: 16, border: '1px solid #e5e0d8',
+        background: '#fff', borderRadius: 16, border: '1px solid #d9e2ec',
         padding: '28px 28px 32px', boxShadow: '0 2px 12px rgba(30,42,53,0.06)',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
-          <IconDollar size={22} style={{ color: '#4a7c59' }} />
+          <IconDollar size={22} style={{ color: '#12805c' }} />
           <h2 style={{
             fontFamily: 'var(--font-display, sans-serif)',
-            fontSize: 26, fontWeight: 700, color: '#1e2a35',
+            fontSize: 26, fontWeight: 700, color: '#111827',
             margin: 0, letterSpacing: 0.3,
           }}>
             Reserve Your Spot
           </h2>
         </div>
-        <p style={{ color: '#8a8178', fontSize: 13, margin: '0 0 24px' }}>
+        <p style={{ color: '#667085', fontSize: 13, margin: '0 0 24px' }}>
           One payment locks in your position
         </p>
 
         {/* Summary card */}
         <div style={{
-          background: '#f5f0e8', borderRadius: 12, border: '1px solid #e5e0d8',
+          background: '#f6f7fb', borderRadius: 12, border: '1px solid #d9e2ec',
           overflow: 'hidden', marginBottom: 20,
         }}>
-          <div style={{ padding: '16px 18px', borderBottom: '1px solid #e5e0d8' }}>
-            <div style={{ fontSize: 12, color: '#8a8178', fontWeight: 600, letterSpacing: 0.5, textTransform: 'uppercase', marginBottom: 10 }}>
+          <div style={{ padding: '16px 18px', borderBottom: '1px solid #d9e2ec' }}>
+            <div style={{ fontSize: 12, color: '#667085', fontWeight: 600, letterSpacing: 0.5, textTransform: 'uppercase', marginBottom: 10 }}>
               Order Summary
             </div>
             {[
@@ -815,8 +815,8 @@ function PaymentScreen({ game, selectedPos, form, onNext, onBack }) {
               { label: 'Player', value: form.name || '—' },
             ].map(({ label, value }) => (
               <div key={label} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8, fontSize: 13 }}>
-                <span style={{ color: '#8a8178' }}>{label}</span>
-                <span style={{ color: '#1e2a35', fontWeight: 500 }}>{value}</span>
+                <span style={{ color: '#667085' }}>{label}</span>
+                <span style={{ color: '#111827', fontWeight: 500 }}>{value}</span>
               </div>
             ))}
           </div>
@@ -824,10 +824,10 @@ function PaymentScreen({ game, selectedPos, form, onNext, onBack }) {
             padding: '14px 18px',
             display: 'flex', justifyContent: 'space-between', alignItems: 'center',
           }}>
-            <span style={{ fontWeight: 700, color: '#1e2a35', fontSize: 15 }}>Total</span>
+            <span style={{ fontWeight: 700, color: '#111827', fontSize: 15 }}>Total</span>
             <span style={{
               fontFamily: 'var(--font-display, sans-serif)',
-              fontSize: 26, fontWeight: 700, color: '#1e2a35',
+              fontSize: 26, fontWeight: 700, color: '#111827',
             }}>
               ${game.cost}
             </span>
@@ -836,15 +836,15 @@ function PaymentScreen({ game, selectedPos, form, onNext, onBack }) {
 
         {/* Stripe-style input area */}
         <div style={{
-          background: '#fafaf8', borderRadius: 10, border: '1px solid #e5e0d8',
+          background: '#f8fafc', borderRadius: 10, border: '1px solid #d9e2ec',
           padding: '16px 18px', marginBottom: 20,
         }}>
-          <div style={{ fontSize: 11, color: '#8a8178', fontWeight: 600, letterSpacing: 0.5, textTransform: 'uppercase', marginBottom: 12 }}>
+          <div style={{ fontSize: 11, color: '#667085', fontWeight: 600, letterSpacing: 0.5, textTransform: 'uppercase', marginBottom: 12 }}>
             Payment Method
           </div>
           <div style={{
-            background: '#fff', borderRadius: 8, border: '1px solid #d0cbc3',
-            padding: '11px 14px', fontSize: 13, color: '#8a8178',
+            background: '#fff', borderRadius: 8, border: '1px solid #cbd5e1',
+            padding: '11px 14px', fontSize: 13, color: '#667085',
             display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           }}>
             <span>Card number</span>
@@ -852,7 +852,7 @@ function PaymentScreen({ game, selectedPos, form, onNext, onBack }) {
               {['VISA', 'MC', 'AMEX'].map(b => (
                 <span key={b} style={{
                   fontSize: 9, fontWeight: 800, border: '1px solid #ccc',
-                  borderRadius: 3, padding: '1px 4px', color: '#4a4540',
+                  borderRadius: 3, padding: '1px 4px', color: '#475467',
                 }}>
                   {b}
                 </span>
@@ -862,14 +862,14 @@ function PaymentScreen({ game, selectedPos, form, onNext, onBack }) {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginTop: 8 }}>
             {['Expiry (MM/YY)', 'CVC'].map(p => (
               <div key={p} style={{
-                background: '#fff', borderRadius: 8, border: '1px solid #d0cbc3',
-                padding: '11px 14px', fontSize: 13, color: '#8a8178',
+                background: '#fff', borderRadius: 8, border: '1px solid #cbd5e1',
+                padding: '11px 14px', fontSize: 13, color: '#667085',
               }}>
                 {p}
               </div>
             ))}
           </div>
-          <div style={{ marginTop: 8, display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, color: '#8a8178' }}>
+          <div style={{ marginTop: 8, display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, color: '#667085' }}>
             <IconShield size={12} />
             Secured by Stripe. Your info is never stored.
           </div>
@@ -884,7 +884,7 @@ function PaymentScreen({ game, selectedPos, form, onNext, onBack }) {
             disabled={loading}
             style={{
               ...nextBtnStyle,
-              background: loading ? '#8a8178' : '#c4302b',
+              background: loading ? '#667085' : '#f04438',
               opacity: 1,
               cursor: loading ? 'wait' : 'pointer',
               gap: 8,
@@ -918,7 +918,7 @@ function ConfirmedScreen({ game, selectedPos, form }) {
     <div>
       {/* Banner */}
       <div style={{
-        background: 'linear-gradient(135deg, #1e2a35 0%, #2a3f50 50%, #4a7c59 100%)',
+        background: 'linear-gradient(135deg, #111827 0%, #243447 50%, #12805c 100%)',
         color: '#fff', textAlign: 'center',
         padding: '56px 20px 48px',
         position: 'relative', overflow: 'hidden',
@@ -939,7 +939,7 @@ function ConfirmedScreen({ game, selectedPos, form }) {
         ))}
         <div style={{
           width: 80, height: 80, borderRadius: '50%',
-          background: '#4a7c59', border: '4px solid rgba(255,255,255,0.3)',
+          background: '#12805c', border: '4px solid rgba(255,255,255,0.3)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           margin: '0 auto 20px', position: 'relative', zIndex: 1,
         }}>
@@ -961,10 +961,10 @@ function ConfirmedScreen({ game, selectedPos, form }) {
       {/* Details card */}
       <div style={{ maxWidth: 520, margin: '-20px auto 0', padding: '0 20px 60px', position: 'relative', zIndex: 2 }}>
         <div style={{
-          background: '#fff', borderRadius: 16, border: '1px solid #e5e0d8',
+          background: '#fff', borderRadius: 16, border: '1px solid #d9e2ec',
           padding: '24px 26px', boxShadow: '0 4px 20px rgba(30,42,53,0.1)',
         }}>
-          <div style={{ fontFamily: 'var(--font-display, sans-serif)', fontSize: 13, letterSpacing: 1, textTransform: 'uppercase', color: '#8a8178', marginBottom: 16 }}>
+          <div style={{ fontFamily: 'var(--font-display, sans-serif)', fontSize: 13, letterSpacing: 1, textTransform: 'uppercase', color: '#667085', marginBottom: 16 }}>
             Game Details
           </div>
           {[
@@ -976,10 +976,10 @@ function ConfirmedScreen({ game, selectedPos, form }) {
           ].map(({ icon, label }) => (
             <div key={label} style={{
               display: 'flex', alignItems: 'center', gap: 12,
-              padding: '10px 0', borderBottom: '1px solid #f0ece4',
-              fontSize: 14, color: '#1e2a35',
+              padding: '10px 0', borderBottom: '1px solid #edf2f7',
+              fontSize: 14, color: '#111827',
             }}>
-              <span style={{ color: '#8a8178', flexShrink: 0 }}>{icon}</span>
+              <span style={{ color: '#667085', flexShrink: 0 }}>{icon}</span>
               {label}
             </div>
           ))}
@@ -987,15 +987,15 @@ function ConfirmedScreen({ game, selectedPos, form }) {
           {/* Add to calendar / view roster */}
           <div style={{ display: 'flex', gap: 10, marginTop: 20 }}>
             <button style={{
-              flex: 1, background: '#f5f0e8', border: '1px solid #e5e0d8',
+              flex: 1, background: '#f6f7fb', border: '1px solid #d9e2ec',
               borderRadius: 10, padding: '11px 14px', cursor: 'pointer',
-              fontSize: 13, fontWeight: 600, color: '#4a4540',
+              fontSize: 13, fontWeight: 600, color: '#475467',
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
             }}>
               <IconCalendar size={14} /> Add to Calendar
             </button>
             <button style={{
-              flex: 1, background: '#1e2a35', border: 'none',
+              flex: 1, background: '#111827', border: 'none',
               borderRadius: 10, padding: '11px 14px', cursor: 'pointer',
               fontSize: 13, fontWeight: 700, color: '#fff',
               fontFamily: 'var(--font-display, sans-serif)',
@@ -1007,7 +1007,7 @@ function ConfirmedScreen({ game, selectedPos, form }) {
           </div>
         </div>
 
-        <div style={{ textAlign: 'center', marginTop: 20, fontSize: 12, color: '#8a8178' }}>
+        <div style={{ textAlign: 'center', marginTop: 20, fontSize: 12, color: '#667085' }}>
           A confirmation will be sent to your phone number on file.
         </div>
       </div>
@@ -1017,15 +1017,15 @@ function ConfirmedScreen({ game, selectedPos, form }) {
 
 // ─── shared button styles ─────────────────────────────────────────────────────
 const backBtnStyle = {
-  background: '#f5f0e8', border: '1px solid #e5e0d8',
+  background: '#f6f7fb', border: '1px solid #d9e2ec',
   borderRadius: 10, padding: '11px 16px', cursor: 'pointer',
-  fontSize: 13, fontWeight: 600, color: '#4a4540',
+  fontSize: 13, fontWeight: 600, color: '#475467',
   display: 'flex', alignItems: 'center', gap: 6,
   flexShrink: 0,
 };
 const nextBtnStyle = {
   flex: 1,
-  background: '#c4302b', color: '#fff', border: 'none',
+  background: '#f04438', color: '#fff', border: 'none',
   borderRadius: 10, padding: '12px 20px', cursor: 'pointer',
   fontFamily: 'var(--font-display, sans-serif)',
   fontSize: 15, fontWeight: 700, letterSpacing: 0.8, textTransform: 'uppercase',
@@ -1034,8 +1034,8 @@ const nextBtnStyle = {
 function inputStyle(val) {
   return {
     width: '100%', padding: '11px 14px',
-    border: `1.5px solid ${val ? '#1e2a35' : '#d0cbc3'}`,
-    borderRadius: 9, fontSize: 14, color: '#1e2a35',
+    border: `1.5px solid ${val ? '#111827' : '#cbd5e1'}`,
+    borderRadius: 9, fontSize: 14, color: '#111827',
     background: '#fff', outline: 'none',
     transition: 'border-color 0.15s',
     fontFamily: 'inherit',
@@ -1072,7 +1072,7 @@ export default function GamePage() {
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f5f0e8' }}>
+    <div style={{ minHeight: '100vh', background: '#f6f7fb' }}>
       {screen !== 'confirmed' && (
         <PageHeader game={game} screen={screen} onBack={handleBack} />
       )}

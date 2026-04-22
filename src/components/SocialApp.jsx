@@ -12,7 +12,7 @@ import {
 
 const MOCK_ME = {
   id: 'me', name: 'You', handle: '@you',
-  avatar: '#d97757',
+  avatar: '#f97316',
   stats: { games: 14, hits: 28, rbi: 19, innings: 42 },
   positions: ['SS', '2B', 'CF'],
   skill: 'solid',
@@ -21,67 +21,67 @@ const MOCK_ME = {
 const MOCK_UPCOMING = [
   { id: 'g1', title: 'Saturday Morning Scrimmage', date: 'Sat · Apr 26', time: '10:00 AM',
     field: 'Bullfrog Creek Park · D1', filled: 11, cap: 18, myPos: 'Shortstop', myTeam: 'Home',
-    host: 'Marcus Chen', hostAvatar: '#d97757', cost: 10, paid: true,
+    host: 'Marcus Chen', hostAvatar: '#f97316', cost: 10, paid: true,
     weather: { temp: 74, icon: 'sun' } },
   { id: 'g2', title: 'Tuesday Night Pickup', date: 'Tue · Apr 29', time: '6:30 PM',
     field: 'Gibsonton Community Field', filled: 14, cap: 18, myPos: '2nd Base', myTeam: 'Away',
-    host: 'Tony Russo', hostAvatar: '#2a4a6b', cost: 10, paid: true,
+    host: 'Tony Russo', hostAvatar: '#2563eb', cost: 10, paid: true,
     weather: { temp: 71, icon: 'cloud' } },
 ];
 
 const MOCK_NEARBY = [
   { id: 'n1', title: 'Sunday Fundays', date: 'Sun · Apr 27', time: '9:00 AM',
     field: '13012 Bullfrog Creek Rd', distance: '0.0 mi', filled: 7, cap: 18, cost: 10,
-    host: 'Jake P.', hostAvatar: '#8b6f47', level: 'All levels', tags: ['Kid-friendly', 'Slow-pitch'] },
+    host: 'Jake P.', hostAvatar: '#a16207', level: 'All levels', tags: ['Kid-friendly', 'Slow-pitch'] },
   { id: 'n2', title: 'Wednesday Wipeout', date: 'Wed · Apr 30', time: '7:00 PM',
     field: 'Bullfrog Creek Park · Field 2', distance: '0.4 mi', filled: 15, cap: 18, cost: 12,
-    host: 'Derek W.', hostAvatar: '#1e3a5f', level: 'Ringer', tags: ['Competitive'] },
+    host: 'Derek W.', hostAvatar: '#1d4ed8', level: 'Ringer', tags: ['Competitive'] },
   { id: 'n3', title: 'Kids Clinic · Ages 6–9', date: 'Sat · Apr 26', time: '8:00 AM',
     field: 'Gibsonton Youth Baseball', distance: '1.6 mi', filled: 9, cap: 20, cost: 5,
-    host: 'Coach Martinez', hostAvatar: '#4a7c59', level: 'Rookie', tags: ['Kids', 'Coached'] },
+    host: 'Coach Martinez', hostAvatar: '#12805c', level: 'Rookie', tags: ['Kids', 'Coached'] },
   { id: 'n4', title: 'Thursday Throwdown', date: 'Thu · May 1', time: '6:00 PM',
     field: 'South Shore Sports Complex', distance: '4.8 mi', filled: 4, cap: 18, cost: 10,
-    host: 'Lin W.', hostAvatar: '#9c6b54', level: 'All levels', tags: ['Co-ed'] },
+    host: 'Lin W.', hostAvatar: '#b45309', level: 'All levels', tags: ['Co-ed'] },
 ];
 
 const MOCK_FEED = [
-  { id: 'f1', author: 'Marcus Chen', authorColor: '#d97757', time: '2h',
+  { id: 'f1', author: 'Marcus Chen', authorColor: '#f97316', time: '2h',
     gameTitle: 'Saturday Morning Scrimmage', kind: 'highlight',
     caption: 'Derek with an absolute rocket to the gap — easy triple.',
     likes: 47, comments: 8, liked: false,
-    mediaTag: 'HIGHLIGHT', mediaBg: '#1e3a5f' },
-  { id: 'f2', author: 'Tony Russo', authorColor: '#2a4a6b', time: '5h',
+    mediaTag: 'HIGHLIGHT', mediaBg: '#1d4ed8' },
+  { id: 'f2', author: 'Tony Russo', authorColor: '#2563eb', time: '5h',
     gameTitle: 'Tuesday Night Pickup', kind: 'recap',
     caption: 'GG everyone. Home team takes it 8-6. Next week we run it back.',
     likes: 23, comments: 4, liked: true,
-    statsLine: 'Final: Home 8 · Away 6', statsBg: '#4a7c59' },
-  { id: 'f3', author: 'Sam Torres', authorColor: '#4a7c59', time: '1d',
+    statsLine: 'Final: Home 8 · Away 6', statsBg: '#12805c' },
+  { id: 'f3', author: 'Sam Torres', authorColor: '#12805c', time: '1d',
     gameTitle: 'Last Saturday', kind: 'photo',
     caption: "Team pic after a beautiful day at the field. Can't beat this crew.",
     likes: 62, comments: 12, liked: false,
-    mediaTag: 'TEAM PHOTO', mediaBg: '#8b6f47' },
+    mediaTag: 'TEAM PHOTO', mediaBg: '#a16207' },
 ];
 
 const MOCK_REELS = [
-  { id: 'r1', author: 'Derek W.', authorColor: '#1e3a5f',
+  { id: 'r1', author: 'Derek W.', authorColor: '#1d4ed8',
     caption: 'Triple to right-center #ThePickUpClub',
     likes: 234, comments: 18, plays: '2.1K',
-    label: 'TRIPLE TO THE GAP', bg: '#1e3a5f', accent: '#c4302b' },
-  { id: 'r2', author: 'Marcus C.', authorColor: '#d97757',
+    label: 'TRIPLE TO THE GAP', bg: '#1d4ed8', accent: '#f04438' },
+  { id: 'r2', author: 'Marcus C.', authorColor: '#f97316',
     caption: 'Diving catch saves the inning',
     likes: 512, comments: 34, plays: '4.8K',
-    label: 'WEB GEM', bg: '#4a7c59', accent: '#e8d4a2' },
-  { id: 'r3', author: 'Sam T.', authorColor: '#4a7c59',
+    label: 'WEB GEM', bg: '#12805c', accent: '#dbeafe' },
+  { id: 'r3', author: 'Sam T.', authorColor: '#12805c',
     caption: 'First homer of the season for Jake!',
     likes: 891, comments: 67, plays: '12K',
-    label: 'GOING, GOING, GONE', bg: '#c4302b', accent: '#ffd94a' },
+    label: 'GOING, GOING, GONE', bg: '#f04438', accent: '#ffd94a' },
 ];
 
 const MOCK_ACTIVITY = [
-  { id: 'a1', kind: 'signup',  text: 'Derek W. signed up for your game',          time: '12m', color: '#1e3a5f' },
-  { id: 'a2', kind: 'waitlist',text: 'Luis O. joined the waitlist',                time: '28m', color: '#b8663f' },
-  { id: 'a3', kind: 'message', text: 'Marcus posted in Saturday Scrimmage',        time: '1h',  color: '#d97757' },
-  { id: 'a4', kind: 'payment', text: 'Payment from Jake P. received ($10)',        time: '2h',  color: '#4a7c59' },
+  { id: 'a1', kind: 'signup',  text: 'Derek W. signed up for your game',          time: '12m', color: '#1d4ed8' },
+  { id: 'a2', kind: 'waitlist',text: 'Luis O. joined the waitlist',                time: '28m', color: '#ea580c' },
+  { id: 'a3', kind: 'message', text: 'Marcus posted in Saturday Scrimmage',        time: '1h',  color: '#f97316' },
+  { id: 'a4', kind: 'payment', text: 'Payment from Jake P. received ($10)',        time: '2h',  color: '#12805c' },
 ];
 
 const POSITIONS_HEAT = [
@@ -514,7 +514,7 @@ function PositionHeatmap({ t }) {
 
 function ProfileGrid({ t }) {
   const [sub, setSub] = React.useState('grid');
-  const colors = ['#1e3a5f', '#4a7c59', '#c4302b', '#8b6f47', '#6b5b8e', '#2a4a6b', '#b8663f', '#5a7a9a', '#3d6b4a'];
+  const colors = ['#1d4ed8', '#12805c', '#f04438', '#a16207', '#0891b2', '#2563eb', '#ea580c', '#475569', '#15803d'];
   const labels = ['APR 20', 'APR 13', 'APR 6', 'MAR 30', 'MAR 23', 'MAR 16', 'MAR 9', 'MAR 2', 'FEB 23'];
   return (
     <>

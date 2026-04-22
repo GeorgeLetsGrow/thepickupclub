@@ -7,8 +7,8 @@ export function FieldDiagram({ theme: t, players, selectedPosId, onClickPos, com
   const filledBy = {};
   players.forEach(pl => { filledBy[pl.position] = pl; });
   const h = height || (compact ? 240 : 320);
-  const dirt = t.fieldDirt || '#c4a882';
-  const grass = t.fieldGreen || '#4a7c59';
+  const dirt = t.fieldDirt || '#c9975b';
+  const grass = t.fieldGreen || '#12805c';
 
   return (
     <div style={{ position: 'relative', width: '100%', height: h, overflow: 'hidden', background: grass }}>

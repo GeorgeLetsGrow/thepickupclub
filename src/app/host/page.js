@@ -12,13 +12,13 @@ import {
 
 // ─── Theme ──────────────────────────────────────────────────────────────────
 const theme = {
-  fieldGreen: '#4a7c59', fieldDirt: '#c4a882',
-  primary: '#1e2a35', accent: '#c4302b',
-  ink: '#1e2a35', muted: '#8a8178',
+  fieldGreen: '#12805c', fieldDirt: '#c9975b',
+  primary: '#111827', accent: '#f04438',
+  ink: '#111827', muted: '#667085',
   display: 'var(--font-oswald)', radius: '10px',
-  surface: '#fff', line: '#e5e0d8',
+  surface: '#fff', line: '#d9e2ec',
   primaryInk: '#fff', accentInk: '#fff',
-  success: '#4a7c59', surfaceAlt: '#f5f0e8', inkSoft: '#4a4540',
+  success: '#12805c', surfaceAlt: '#f6f7fb', inkSoft: '#475467',
 };
 
 // ─── Position label helper ───────────────────────────────────────────────────

@@ -11,7 +11,7 @@ const THREADS = [
     title: 'Saturday Morning Scrimmage',
     subtitle: 'Host chat · Bullfrog Creek Park',
     participant: 'Marcus Chen',
-    avatar: '#d97757',
+    avatar: '#f97316',
     unread: 2,
     time: '9:42 AM',
     messages: [
@@ -25,7 +25,7 @@ const THREADS = [
     title: 'Tuesday Night Pickup',
     subtitle: 'Host chat · Gibsonton Community Field',
     participant: 'Tony Russo',
-    avatar: '#2a4a6b',
+    avatar: '#2563eb',
     unread: 0,
     time: 'Yesterday',
     messages: [
@@ -38,7 +38,7 @@ const THREADS = [
     title: 'Sunday Fundays',
     subtitle: 'Waitlist · 13012 Bullfrog Creek Rd',
     participant: 'Jake P.',
-    avatar: '#8b6f47',
+    avatar: '#a16207',
     unread: 1,
     time: 'Mon',
     messages: [

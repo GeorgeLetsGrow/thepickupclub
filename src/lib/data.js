@@ -23,24 +23,24 @@ export const SKILL_LEVELS = [
 ];
 
 export const MOCK_PLAYERS = [
-  { id: 'p1',  name: 'Marcus Chen',    age: 34, skill: 'solid',  position: 'H-P',  paid: true, avatar: '#d97757', joinedMinutesAgo: 42 },
-  { id: 'p2',  name: 'Derek Williams', age: 29, skill: 'ringer', position: 'H-SS', paid: true, avatar: '#1e3a5f', joinedMinutesAgo: 38 },
-  { id: 'p3',  name: 'Sam Torres',     age: 31, skill: 'solid',  position: 'H-CF', paid: true, avatar: '#4a7c59', joinedMinutesAgo: 31 },
-  { id: 'p4',  name: 'Jake Patel',     age: 27, skill: 'casual', position: 'H-1B', paid: true, avatar: '#8b6f47', joinedMinutesAgo: 28 },
-  { id: 'p5',  name: "Mike O'Brien",   age: 42, skill: 'casual', position: 'H-C',  paid: true, avatar: '#c4554d', joinedMinutesAgo: 24 },
-  { id: 'p6',  name: 'Tony Russo',     age: 38, skill: 'solid',  position: 'A-P',  paid: true, avatar: '#2a4a6b', joinedMinutesAgo: 19 },
-  { id: 'p7',  name: 'Chris Park',     age: 33, skill: 'solid',  position: 'A-2B', paid: true, avatar: '#6b5b8e', joinedMinutesAgo: 15 },
-  { id: 'p8',  name: 'David Kim',      age: 26, skill: 'ringer', position: 'A-3B', paid: true, avatar: '#3d6b4a', joinedMinutesAgo: 12 },
-  { id: 'p9',  name: 'Alex Rivera',    age: 30, skill: 'casual', position: 'A-LF', paid: true, avatar: '#b8663f', joinedMinutesAgo: 9  },
-  { id: 'p10', name: 'Ben Foster',     age: 35, skill: 'solid',  position: 'A-RF', paid: true, avatar: '#5a7a9a', joinedMinutesAgo: 6  },
-  { id: 'p11', name: 'Jordan Lee',     age: 28, skill: 'casual', position: 'H-LF', paid: true, avatar: '#9c6b54', joinedMinutesAgo: 3  },
+  { id: 'p1',  name: 'Marcus Chen',    age: 34, skill: 'solid',  position: 'H-P',  paid: true, avatar: '#f97316', joinedMinutesAgo: 42 },
+  { id: 'p2',  name: 'Derek Williams', age: 29, skill: 'ringer', position: 'H-SS', paid: true, avatar: '#1d4ed8', joinedMinutesAgo: 38 },
+  { id: 'p3',  name: 'Sam Torres',     age: 31, skill: 'solid',  position: 'H-CF', paid: true, avatar: '#12805c', joinedMinutesAgo: 31 },
+  { id: 'p4',  name: 'Jake Patel',     age: 27, skill: 'casual', position: 'H-1B', paid: true, avatar: '#a16207', joinedMinutesAgo: 28 },
+  { id: 'p5',  name: "Mike O'Brien",   age: 42, skill: 'casual', position: 'H-C',  paid: true, avatar: '#e11d48', joinedMinutesAgo: 24 },
+  { id: 'p6',  name: 'Tony Russo',     age: 38, skill: 'solid',  position: 'A-P',  paid: true, avatar: '#2563eb', joinedMinutesAgo: 19 },
+  { id: 'p7',  name: 'Chris Park',     age: 33, skill: 'solid',  position: 'A-2B', paid: true, avatar: '#0891b2', joinedMinutesAgo: 15 },
+  { id: 'p8',  name: 'David Kim',      age: 26, skill: 'ringer', position: 'A-3B', paid: true, avatar: '#15803d', joinedMinutesAgo: 12 },
+  { id: 'p9',  name: 'Alex Rivera',    age: 30, skill: 'casual', position: 'A-LF', paid: true, avatar: '#ea580c', joinedMinutesAgo: 9  },
+  { id: 'p10', name: 'Ben Foster',     age: 35, skill: 'solid',  position: 'A-RF', paid: true, avatar: '#475569', joinedMinutesAgo: 6  },
+  { id: 'p11', name: 'Jordan Lee',     age: 28, skill: 'casual', position: 'H-LF', paid: true, avatar: '#b45309', joinedMinutesAgo: 3  },
 ];
 
 export const MOCK_GAME = {
   id: 'g-8429',
   title: 'Saturday Morning Scrimmage',
   host: 'Marcus Chen',
-  hostAvatar: '#d97757',
+  hostAvatar: '#f97316',
   date: 'Sat, Apr 26',
   time: '10:00 AM',
   endTime: '12:30 PM',
