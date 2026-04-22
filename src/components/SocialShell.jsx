@@ -51,14 +51,13 @@ function RosterBar({ filled, cap }) {
   );
 }
 
-function GameCard({ g, onManage }) {
+function GameCard({ g }) {
   const WeatherIcon = g.weather?.icon === 'sun' ? IconSun : IconCloud;
   return (
-    <button
-      type="button"
-      onClick={onManage}
+    <Link
+      href={`/game/${g.id}`}
       className="mobile-next-game-card bg-white rounded-2xl border border-line p-4 flex flex-col gap-2 shadow-sm h-full text-left transition-all hover:-translate-y-0.5 hover:border-navy/30 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2 focus:ring-offset-cream"
-      aria-label={`Manage registration for ${g.title}`}
+      aria-label={`Open ${g.title}`}
     >
       {/* Date / time row */}
       <div className="flex items-center justify-between">
@@ -96,10 +95,10 @@ function GameCard({ g, onManage }) {
       <RosterBar filled={g.filled} cap={g.cap} />
       <div className="mt-1 border-t border-line pt-2">
         <span className="inline-flex items-center gap-1 font-display text-[11px] font-semibold tracking-widest uppercase text-red">
-          Manage Registration <IconChevR size={13} />
+          Open Game <IconChevR size={13} />
         </span>
       </div>
-    </button>
+    </Link>
   );
 }
 
@@ -166,7 +165,6 @@ function NearbyCard({ n }) {
 /* ──────────────────────────────── Tab: Home ────────────────────────────── */
 
 function TabHome() {
-  const [managedGame, setManagedGame] = useState(null);
   const [activeGameSlide, setActiveGameSlide] = useState(0);
   const sliderRef = React.useRef(null);
 
@@ -187,7 +185,7 @@ function TabHome() {
         >
           {MOCK_UPCOMING.map(g => (
             <div key={g.id} className="mobile-next-games-slide w-full shrink-0 snap-center lg:w-full lg:shrink">
-              <GameCard g={g} onManage={() => setManagedGame(g)} />
+              <GameCard g={g} />
             </div>
           ))}
         </div>
@@ -238,108 +236,6 @@ function TabHome() {
         </div>
       </section>
 
-      {managedGame && (
-        <ManageRegistrationDialog game={managedGame} onClose={() => setManagedGame(null)} />
-      )}
-    </div>
-  );
-}
-
-function ManageRegistrationDialog({ game, onClose }) {
-  const [confirmCancel, setConfirmCancel] = useState(false);
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/35 px-4 pb-4 pt-16 lg:items-center lg:pb-0">
-      <div className="w-full max-w-lg overflow-hidden rounded-2xl border border-line bg-white shadow-2xl">
-        <div className="flex items-start justify-between gap-4 border-b border-line px-5 py-4">
-          <div>
-            <p className="font-display text-[11px] font-semibold tracking-widest text-red uppercase">
-              Manage Registration
-            </p>
-            <h2 className="mt-1 font-display text-xl font-bold tracking-wide text-navy uppercase">
-              {game.title}
-            </h2>
-            <p className="mt-1 text-sm text-muted">{game.date} · {game.time}</p>
-          </div>
-          <button
-            type="button"
-            aria-label="Close registration manager"
-            onClick={onClose}
-            className="rounded-full p-1.5 text-muted transition-colors hover:bg-cream hover:text-navy"
-          >
-            <IconX size={20} />
-          </button>
-        </div>
-
-        <div className="space-y-4 px-5 py-5">
-          <div className="grid grid-cols-2 gap-3">
-            <div className="rounded-xl border border-line bg-cream px-3 py-3">
-              <p className="font-display text-[10px] font-semibold tracking-widest text-muted uppercase">Position</p>
-              <p className="mt-1 font-display text-base font-bold text-navy">{game.myPos}</p>
-              <p className="text-xs text-muted">{game.myTeam} team</p>
-            </div>
-            <div className="rounded-xl border border-line bg-cream px-3 py-3">
-              <p className="font-display text-[10px] font-semibold tracking-widest text-muted uppercase">Paid</p>
-              <p className="mt-1 font-display text-base font-bold text-navy">${game.cost}</p>
-              <p className="text-xs text-muted">{game.paid ? 'Spot reserved' : 'Payment due'}</p>
-            </div>
-          </div>
-
-          <div className="rounded-xl border border-line px-4 py-3">
-            <div className="flex items-start gap-3">
-              <IconPin size={18} style={{ color: '#667085', marginTop: 2 }} />
-              <div>
-                <p className="font-display text-sm font-bold tracking-wide text-navy uppercase">{game.field}</p>
-                <p className="mt-1 text-sm text-muted">
-                  Arrive 15 minutes early. Bring your glove and water.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="rounded-xl border border-red/25 bg-red/5 px-4 py-3">
-            <p className="font-display text-[11px] font-semibold tracking-widest text-red uppercase">
-              Cancellation Policy
-            </p>
-            <p className="mt-1 text-sm leading-relaxed text-navy">
-              You can cancel for a refund until 24 hours before first pitch. Cancelling inside 24 hours forfeits the ${game.cost} game fee.
-            </p>
-          </div>
-
-          {confirmCancel && (
-            <div className="rounded-xl border border-red bg-white px-4 py-3">
-              <p className="font-display text-sm font-bold tracking-wide text-red uppercase">
-                Confirm cancellation
-              </p>
-              <p className="mt-1 text-sm text-muted">
-                In production, the app would calculate whether this spot is still refundable before final confirmation.
-              </p>
-            </div>
-          )}
-
-          <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
-            <Link
-              href={`/game/${game.id}`}
-              className="flex items-center justify-center rounded-xl border border-line px-4 py-3 font-display text-[11px] font-semibold tracking-widest text-navy uppercase transition-colors hover:bg-cream"
-            >
-              View Game
-            </Link>
-            <Link
-              href={`/messages?thread=${game.id === 'g2' ? 'tony' : 'saturday'}`}
-              className="flex items-center justify-center rounded-xl border border-line px-4 py-3 font-display text-[11px] font-semibold tracking-widest text-navy uppercase transition-colors hover:bg-cream"
-            >
-              Message Host
-            </Link>
-            <button
-              type="button"
-              onClick={() => setConfirmCancel(true)}
-              className="rounded-xl bg-red px-4 py-3 font-display text-[11px] font-semibold tracking-widest text-white uppercase transition-opacity hover:opacity-90"
-            >
-              Cancel Spot
-            </button>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
