@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { eq } from 'drizzle-orm';
 import { getDb, hasDatabaseUrl, users } from '@/lib/db';
 import {
-  avatarFor, isEmail, passwordFromProfile, userPayload, validateProfile,
+  avatarFor, isEmail, userPayload, validateProfile,
 } from '@/lib/auth-profile';
 import { createClient, hasSupabaseAuthEnv } from '@/utils/supabase/server';
 
@@ -19,12 +19,15 @@ export async function POST(request) {
       return NextResponse.json({ error: profile.error }, { status: 400 });
     }
 
+    const password = String(body?.password || '');
+    if (password.length < 8) {
+      return NextResponse.json({ error: 'Password must be at least 8 characters.' }, { status: 400 });
+    }
+
     let authUserId = null;
-    let authWarning = '';
 
     if (isEmail(profile.contact) && hasSupabaseAuthEnv()) {
       const supabase = await createClient();
-      const password = passwordFromProfile(profile);
       let authResult = await supabase.auth.signUp({
         email: profile.contact,
         password,
@@ -46,10 +49,10 @@ export async function POST(request) {
       }
 
       if (authResult.error) {
-        authWarning = authResult.error.message;
-      } else {
-        authUserId = authResult.data.user?.id || null;
+        return NextResponse.json({ error: authResult.error.message }, { status: 400 });
       }
+
+      authUserId = authResult.data.user?.id || null;
     }
 
     if (!hasDatabaseUrl()) {
@@ -62,7 +65,7 @@ export async function POST(request) {
       return NextResponse.json({
         user: userPayload(user, false),
         persisted: false,
-        message: authWarning || 'SUPABASE_DATABASE_URL is not configured; using prototype local profile mode.',
+        message: 'SUPABASE_DATABASE_URL is not configured; using prototype local profile mode.',
       }, { status: 202 });
     }
 
@@ -94,7 +97,7 @@ export async function POST(request) {
     const response = NextResponse.json({
       user: userPayload(user, true),
       persisted: true,
-      message: authWarning,
+      message: '',
     });
     response.cookies.set('pickup_user_id', user.id, {
       httpOnly: true,

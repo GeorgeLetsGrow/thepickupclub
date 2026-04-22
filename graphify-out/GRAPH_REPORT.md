@@ -1,12 +1,12 @@
 # Graph Report - C:\Users\gjram\sites\pickupgame-app  (2026-04-21)
 
 ## Corpus Check
-- 40 files · ~49,977 words
+- 40 files · ~49,999 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 215 nodes · 197 edges · 33 communities detected
-- Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 11 edges (avg confidence: 0.8)
+- 214 nodes · 195 edges · 33 communities detected
+- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 10 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Community Hubs (Navigation)
@@ -45,7 +45,7 @@
 - [[_COMMUNITY_Community 32|Community 32]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `POST()` - 12 edges
+1. `POST()` - 11 edges
 2. `createClient()` - 4 edges
 3. `initials()` - 3 edges
 4. `Avatar()` - 3 edges
@@ -59,14 +59,14 @@
 ## Surprising Connections (you probably didn't know these)
 - `POST()` --calls--> `isEmail()`  [INFERRED]
   C:\Users\gjram\sites\pickupgame-app\src\app\api\signup\route.js → C:\Users\gjram\sites\pickupgame-app\src\lib\auth-profile.js
-- `POST()` --calls--> `passwordFromProfile()`  [INFERRED]
-  C:\Users\gjram\sites\pickupgame-app\src\app\api\signup\route.js → C:\Users\gjram\sites\pickupgame-app\src\lib\auth-profile.js
 - `POST()` --calls--> `hasDatabaseUrl()`  [INFERRED]
   C:\Users\gjram\sites\pickupgame-app\src\app\api\signup\route.js → C:\Users\gjram\sites\pickupgame-app\src\lib\db\index.js
 - `POST()` --calls--> `avatarFor()`  [INFERRED]
   C:\Users\gjram\sites\pickupgame-app\src\app\api\signup\route.js → C:\Users\gjram\sites\pickupgame-app\src\lib\auth-profile.js
 - `POST()` --calls--> `userPayload()`  [INFERRED]
   C:\Users\gjram\sites\pickupgame-app\src\app\api\signup\route.js → C:\Users\gjram\sites\pickupgame-app\src\lib\auth-profile.js
+- `POST()` --calls--> `getDb()`  [INFERRED]
+  C:\Users\gjram\sites\pickupgame-app\src\app\api\signup\route.js → C:\Users\gjram\sites\pickupgame-app\src\lib\db\index.js
 
 ## Communities
 
@@ -83,8 +83,8 @@ Cohesion: 0.11
 Nodes (4): Avatar(), InfoScreen(), initials(), inputStyle()
 
 ### Community 3 - "Community 3"
-Cohesion: 0.17
-Nodes (12): avatarFor(), isEmail(), normalizeContact(), passwordFromProfile(), userPayload(), validateProfile(), getDb(), hasDatabaseUrl() (+4 more)
+Cohesion: 0.18
+Nodes (11): avatarFor(), isEmail(), normalizeContact(), userPayload(), validateProfile(), getDb(), hasDatabaseUrl(), middleware() (+3 more)
 
 ### Community 4 - "Community 4"
 Cohesion: 0.12
@@ -239,8 +239,8 @@ Nodes (0):
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Are the 10 inferred relationships involving `POST()` (e.g. with `normalizeContact()` and `isEmail()`) actually correct?**
-  _`POST()` has 10 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 9 inferred relationships involving `POST()` (e.g. with `normalizeContact()` and `isEmail()`) actually correct?**
+  _`POST()` has 9 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 2 inferred relationships involving `createClient()` (e.g. with `middleware()` and `POST()`) actually correct?**
   _`createClient()` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **Should `Community 0` be split into smaller, more focused modules?**

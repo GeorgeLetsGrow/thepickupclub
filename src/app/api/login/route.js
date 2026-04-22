@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { eq } from 'drizzle-orm';
 import { getDb, hasDatabaseUrl, users } from '@/lib/db';
-import { avatarFor, isEmail, normalizeContact, passwordFromProfile, userPayload } from '@/lib/auth-profile';
+import { avatarFor, isEmail, normalizeContact, userPayload } from '@/lib/auth-profile';
 import { createClient, hasSupabaseAuthEnv } from '@/utils/supabase/server';
 
 export const runtime = 'nodejs';
@@ -10,26 +10,30 @@ export async function POST(request) {
   const body = await request.json().catch(() => null);
   const contact = normalizeContact(body?.contact);
   const zip = String(body?.zip || '33534').trim();
+  const password = String(body?.password || '');
 
   if (!contact) {
     return NextResponse.json({ error: 'Email or phone is required.' }, { status: 400 });
   }
 
+  if (password.length < 8) {
+    return NextResponse.json({ error: 'Password must be at least 8 characters.' }, { status: 400 });
+  }
+
   let authUserId = null;
-  let authWarning = '';
 
   if (isEmail(contact) && hasSupabaseAuthEnv()) {
     const supabase = await createClient();
     const authResult = await supabase.auth.signInWithPassword({
       email: contact,
-      password: passwordFromProfile({ contact, zip }),
+      password,
     });
 
     if (authResult.error) {
-      authWarning = authResult.error.message;
-    } else {
-      authUserId = authResult.data.user?.id || null;
+      return NextResponse.json({ error: authResult.error.message }, { status: 401 });
     }
+
+    authUserId = authResult.data.user?.id || null;
   }
 
   if (!hasDatabaseUrl()) {
@@ -47,7 +51,7 @@ export async function POST(request) {
     return NextResponse.json({
       user: userPayload(user, false),
       persisted: false,
-      message: authWarning || 'Database profile storage is unavailable; using prototype local profile mode.',
+      message: 'Database profile storage is unavailable; using prototype local profile mode.',
     }, { status: 202 });
   }
 
@@ -66,7 +70,7 @@ export async function POST(request) {
     const response = NextResponse.json({
       user: userPayload(user, true),
       persisted: true,
-      message: authWarning,
+      message: '',
     });
     response.cookies.set('pickup_user_id', user.id, {
       httpOnly: true,

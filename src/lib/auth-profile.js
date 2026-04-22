@@ -9,10 +9,6 @@ export function isEmail(contact) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact);
 }
 
-export function passwordFromProfile(profile) {
-  return `TPC-${profile.contact}-${profile.zip || '33534'}`.slice(0, 72);
-}
-
 export function avatarFor(name) {
   const seed = String(name || 'player').split('').reduce((sum, char) => sum + char.charCodeAt(0), 0);
   return AVATAR_COLORS[seed % AVATAR_COLORS.length];

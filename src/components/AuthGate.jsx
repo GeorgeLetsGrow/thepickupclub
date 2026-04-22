@@ -70,6 +70,7 @@ export function AuthGate({ children }) {
   const [form, setForm] = React.useState({
     name: '',
     contact: '',
+    password: '',
     zip: '33534',
     accountType: 'player',
     positions: ['SS'],
@@ -105,8 +106,9 @@ export function AuthGate({ children }) {
       throw new Error(data?.error || 'Could not access your account.');
     }
 
+    const { password, ...safePayload } = payload;
     const savedUser = {
-      ...payload,
+      ...safePayload,
       ...data.user,
       dbPersisted: Boolean(data.persisted),
     };
@@ -130,6 +132,12 @@ export function AuthGate({ children }) {
     };
     if (!nextUser.contact || !nextUser.zip) {
       setError('Enter your email or phone and ZIP to continue.');
+      setSubmitting(false);
+      return;
+    }
+
+    if (!nextUser.password || nextUser.password.length < 8) {
+      setError('Enter a password with at least 8 characters.');
       setSubmitting(false);
       return;
     }
@@ -250,6 +258,19 @@ export function AuthGate({ children }) {
                   onChange={event => setForm(prev => ({ ...prev, contact: event.target.value }))}
                   placeholder="you@example.com"
                   autoComplete="email"
+                  required
+                />
+              </Field>
+
+              <Field label="Password">
+                <input
+                  className={inputClass()}
+                  value={form.password}
+                  onChange={event => setForm(prev => ({ ...prev, password: event.target.value }))}
+                  placeholder={mode === 'login' ? 'Enter your password' : 'Create a password'}
+                  autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
+                  type="password"
+                  minLength={8}
                   required
                 />
               </Field>

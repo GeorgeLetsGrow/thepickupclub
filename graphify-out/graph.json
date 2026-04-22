@@ -1759,19 +1759,10 @@
       "norm_label": "isemail()"
     },
     {
-      "label": "passwordFromProfile()",
-      "file_type": "code",
-      "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\lib\\auth-profile.js",
-      "source_location": "L12",
-      "id": "auth_profile_passwordfromprofile",
-      "community": 3,
-      "norm_label": "passwordfromprofile()"
-    },
-    {
       "label": "avatarFor()",
       "file_type": "code",
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\lib\\auth-profile.js",
-      "source_location": "L16",
+      "source_location": "L12",
       "id": "auth_profile_avatarfor",
       "community": 3,
       "norm_label": "avatarfor()"
@@ -1780,7 +1771,7 @@
       "label": "validateProfile()",
       "file_type": "code",
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\lib\\auth-profile.js",
-      "source_location": "L21",
+      "source_location": "L17",
       "id": "auth_profile_validateprofile",
       "community": 3,
       "norm_label": "validateprofile()"
@@ -1789,7 +1780,7 @@
       "label": "userPayload()",
       "file_type": "code",
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\lib\\auth-profile.js",
-      "source_location": "L38",
+      "source_location": "L34",
       "id": "auth_profile_userpayload",
       "community": 3,
       "norm_label": "userpayload()"
@@ -2059,18 +2050,6 @@
       "_tgt": "server_createclient",
       "source": "route_post",
       "target": "server_createclient"
-    },
-    {
-      "relation": "calls",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\app\\api\\login\\route.js",
-      "source_location": "L25",
-      "weight": 1.0,
-      "_src": "route_post",
-      "_tgt": "auth_profile_passwordfromprofile",
-      "source": "route_post",
-      "target": "auth_profile_passwordfromprofile"
     },
     {
       "relation": "calls",
@@ -2544,7 +2523,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\components\\AuthGate.jsx",
-      "source_location": "L236",
+      "source_location": "L244",
       "weight": 1.0,
       "_src": "authgate_authgate",
       "_tgt": "authgate_inputclass",
@@ -4119,18 +4098,6 @@
       "source_location": "L12",
       "weight": 1.0,
       "_src": "c_users_gjram_sites_pickupgame_app_src_lib_auth_profile_js",
-      "_tgt": "auth_profile_passwordfromprofile",
-      "source": "c_users_gjram_sites_pickupgame_app_src_lib_auth_profile_js",
-      "target": "auth_profile_passwordfromprofile",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\lib\\auth-profile.js",
-      "source_location": "L16",
-      "weight": 1.0,
-      "_src": "c_users_gjram_sites_pickupgame_app_src_lib_auth_profile_js",
       "_tgt": "auth_profile_avatarfor",
       "source": "c_users_gjram_sites_pickupgame_app_src_lib_auth_profile_js",
       "target": "auth_profile_avatarfor",
@@ -4140,7 +4107,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\lib\\auth-profile.js",
-      "source_location": "L21",
+      "source_location": "L17",
       "weight": 1.0,
       "_src": "c_users_gjram_sites_pickupgame_app_src_lib_auth_profile_js",
       "_tgt": "auth_profile_validateprofile",
@@ -4152,7 +4119,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\lib\\auth-profile.js",
-      "source_location": "L38",
+      "source_location": "L34",
       "weight": 1.0,
       "_src": "c_users_gjram_sites_pickupgame_app_src_lib_auth_profile_js",
       "_tgt": "auth_profile_userpayload",
@@ -4164,7 +4131,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "C:\\Users\\gjram\\sites\\pickupgame-app\\src\\lib\\auth-profile.js",
-      "source_location": "L23",
+      "source_location": "L19",
       "weight": 1.0,
       "_src": "auth_profile_validateprofile",
       "_tgt": "auth_profile_normalizecontact",
