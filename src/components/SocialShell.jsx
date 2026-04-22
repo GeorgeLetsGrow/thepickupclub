@@ -399,7 +399,13 @@ function DiagonalStripes() {
 
 /* ──────────────────────────────── Tab: Find ────────────────────────────── */
 
-const FILTER_PILLS = ['All', 'Today', 'Kids', 'Casual', 'Competitive'];
+const FIND_FILTERS = [
+  { value: 'all', label: 'All games' },
+  { value: 'today', label: 'Today' },
+  { value: 'kids', label: 'Kids' },
+  { value: 'casual', label: 'Casual' },
+  { value: 'competitive', label: 'Competitive' },
+];
 const SAMPLE_GAME_ADDRESS = '13012 Bullfrog Creek Rd, Gibsonton, FL 33534';
 const DEFAULT_MAP_CENTER = { lat: 27.7985326, lng: -82.3505479 };
 const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
@@ -417,6 +423,18 @@ function fieldKey(value = '') {
 function gamesForField(fieldName = '') {
   const key = fieldKey(fieldName);
   return MOCK_NEARBY.filter(game => fieldKey(game.field) === key);
+}
+
+function matchesFindFilter(game, filter) {
+  if (filter === 'all') return true;
+  const tags = game.tags?.map(tag => tag.toLowerCase()) || [];
+  const title = game.title.toLowerCase();
+
+  if (filter === 'today') return game.date.includes('Sat, Apr 26');
+  if (filter === 'kids') return tags.some(tag => tag.includes('kid') || tag.includes('coach')) || title.includes('kids');
+  if (filter === 'casual') return tags.some(tag => tag.includes('slow') || tag.includes('co-ed')) || title.includes('fundays');
+  if (filter === 'competitive') return tags.some(tag => tag.includes('competitive')) || title.includes('wipeout');
+  return true;
 }
 
 function loadGoogleMaps(apiKey) {
@@ -444,8 +462,10 @@ function loadGoogleMaps(apiKey) {
 }
 
 function TabFind() {
-  const [activeFilter, setActiveFilter] = useState('All');
+  const [activeFilter, setActiveFilter] = useState('all');
   const [viewMode, setViewMode] = useState('list');
+  const filteredGames = MOCK_NEARBY.filter(game => matchesFindFilter(game, activeFilter));
+  const activeFilterLabel = FIND_FILTERS.find(filter => filter.value === activeFilter)?.label || 'All games';
 
   return (
     <div className="space-y-4">
@@ -466,24 +486,41 @@ function TabFind() {
         </button>
       </div>
 
-      {/* Filter pills + view toggle */}
+      {/* Filter + view toggle */}
       <div className="flex items-center gap-2">
-        <div className="flex gap-1.5 overflow-x-auto flex-1 pb-0.5">
-          {FILTER_PILLS.map(pill => (
+        <label className="relative min-w-0 flex-1 lg:hidden">
+          <span className="sr-only">Filter games</span>
+          <select
+            value={activeFilter}
+            onChange={event => setActiveFilter(event.target.value)}
+            className="h-10 w-full appearance-none rounded-xl border border-line bg-white px-3 pr-10 font-display text-[11px] font-semibold tracking-widest text-navy uppercase outline-none transition-colors focus:border-navy focus:ring-2 focus:ring-navy/10"
+          >
+            {FIND_FILTERS.map(filter => (
+              <option key={filter.value} value={filter.value}>
+                {filter.label}
+              </option>
+            ))}
+          </select>
+          <IconFilter size={16} style={{ position: 'absolute', right: 14, top: 12, color: '#667085', pointerEvents: 'none' }} />
+        </label>
+
+        <div className="hidden items-center gap-1 lg:flex">
+          {FIND_FILTERS.map(filter => (
             <button
-              key={pill}
-              onClick={() => setActiveFilter(pill)}
-              className={`shrink-0 font-display text-[11px] tracking-widest uppercase px-3 py-1.5 rounded-full border transition-colors ${
-                activeFilter === pill
+              key={filter.value}
+              onClick={() => setActiveFilter(filter.value)}
+              className={`font-display text-[11px] tracking-widest uppercase px-3 py-1.5 rounded-full border transition-colors ${
+                activeFilter === filter.value
                   ? 'bg-navy text-white border-navy'
                   : 'bg-white text-ink-soft border-line hover:border-navy hover:text-navy'
               }`}
             >
-              {pill}
+              {filter.label}
             </button>
           ))}
         </div>
-        <div className="flex border border-line rounded-lg overflow-hidden shrink-0">
+
+          <div className="flex border border-line rounded-lg overflow-hidden shrink-0">
           <button
             onClick={() => setViewMode('list')}
             className={`px-2.5 py-1.5 transition-colors ${viewMode === 'list' ? 'bg-navy text-white' : 'bg-white text-muted hover:text-navy'}`}
@@ -502,16 +539,33 @@ function TabFind() {
       {/* List or Map */}
       {viewMode === 'list' ? (
         <div className="space-y-3">
-          {MOCK_NEARBY.map(n => <NearbyCard key={n.id} n={n} />)}
+          <div className="flex items-center justify-between px-1">
+            <span className="font-display text-[11px] font-semibold tracking-widest text-muted uppercase">
+              {activeFilterLabel}
+            </span>
+            <span className="text-xs text-muted">
+              {filteredGames.length} game{filteredGames.length === 1 ? '' : 's'}
+            </span>
+          </div>
+          {filteredGames.length > 0 ? (
+            filteredGames.map(n => <NearbyCard key={n.id} n={n} />)
+          ) : (
+            <div className="rounded-2xl border border-dashed border-line bg-white px-4 py-8 text-center">
+              <p className="font-display text-sm font-bold tracking-widest text-navy uppercase">
+                No games found
+              </p>
+              <p className="mt-1 text-sm text-muted">Try another filter or switch to the map.</p>
+            </div>
+          )}
         </div>
       ) : (
-        <GoogleFieldsMap />
+        <GoogleFieldsMap activeFilter={activeFilter} />
       )}
     </div>
   );
 }
 
-function GoogleFieldsMap() {
+  function GoogleFieldsMap({ activeFilter = 'all' }) {
   const mapRef = React.useRef(null);
   const mapInstanceRef = React.useRef(null);
   const markersRef = React.useRef([]);
@@ -618,9 +672,10 @@ function GoogleFieldsMap() {
   }, []);
 
   const featured = selectedPlace?.slot || MOCK_NEARBY[0];
-  const fieldGames = selectedPlace
+  const fieldGames = (selectedPlace
     ? (selectedPlace.games?.length ? selectedPlace.games : [featured])
-    : MOCK_NEARBY.filter(game => fieldKey(game.field) === fieldKey(featured.field));
+    : MOCK_NEARBY.filter(game => fieldKey(game.field) === fieldKey(featured.field)))
+    .filter(game => matchesFindFilter(game, activeFilter));
 
   return (
     <div className="rounded-2xl overflow-hidden border border-line shadow-sm">
