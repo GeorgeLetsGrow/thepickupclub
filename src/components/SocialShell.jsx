@@ -183,10 +183,10 @@ function TabHome() {
         <div
           ref={sliderRef}
           onScroll={handleSliderScroll}
-          className="mobile-next-games-slider mobile-slider -mx-3 flex snap-x snap-mandatory overflow-x-auto scroll-smooth px-3 pb-1 sm:-mx-4 sm:px-4 lg:mx-0 lg:grid lg:grid-cols-2 lg:gap-4 lg:overflow-visible lg:px-0 lg:snap-none"
+          className="mobile-next-games-slider mobile-slider flex snap-x snap-mandatory overflow-x-auto scroll-smooth pb-1 lg:grid lg:grid-cols-2 lg:gap-4 lg:overflow-visible lg:snap-none"
         >
           {MOCK_UPCOMING.map(g => (
-            <div key={g.id} className="mobile-next-games-slide w-full shrink-0 snap-center pr-3 last:pr-0 lg:w-full lg:shrink lg:pr-0">
+            <div key={g.id} className="mobile-next-games-slide w-full shrink-0 snap-center lg:w-full lg:shrink">
               <GameCard g={g} onManage={() => setManagedGame(g)} />
             </div>
           ))}
@@ -1327,12 +1327,12 @@ export function SocialShell({ activeTab = 'home' }) {
   const title = TAB_TITLES[activeTab] || TAB_TITLES.home;
 
   return (
-    <div className="min-h-screen bg-cream flex">
+    <div className="mobile-app-shell min-h-screen bg-cream flex">
       {/* Desktop sidebar */}
       <SideNav activeKey={activeTab} />
 
       {/* Main area */}
-      <div className="flex-1 min-w-0">
+      <div className="mobile-app-content flex-1 min-w-0">
         {/* Mobile top bar */}
         <header className="lg:hidden sticky top-0 z-20 bg-cream/90 backdrop-blur-sm border-b border-line">
           <div className="max-w-2xl mx-auto px-4 h-14 flex items-center justify-between">

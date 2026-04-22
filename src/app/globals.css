@@ -57,12 +57,27 @@ button, input, textarea, select { font: inherit; }
     min-height: 100dvh;
   }
 
+  .mobile-app-shell {
+    position: fixed;
+    inset: 0;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .mobile-app-content {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .mobile-safe-bottom {
-    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
+    padding-bottom: calc(5.25rem + env(safe-area-inset-bottom));
   }
 
   .mobile-bottom-nav {
-    position: fixed;
+    position: absolute;
     inset-inline: 0;
     bottom: 0;
     z-index: 80;
@@ -85,36 +100,25 @@ button, input, textarea, select { font: inherit; }
   }
 
   .mobile-next-games {
-    display: flex;
-    min-height: calc(100dvh - 3.5rem - 4.5rem - env(safe-area-inset-bottom));
-    flex-direction: column;
+    min-height: auto;
   }
 
   .mobile-next-games-slider {
-    flex: 1;
+    width: 100%;
   }
 
   .mobile-next-games-slide {
-    display: flex;
-    min-height: 100%;
+    width: 100%;
   }
 
   .mobile-next-game-card {
-    min-height: 100%;
     border-radius: 20px;
-    padding: 1.25rem;
+    min-height: 17rem;
+    padding: 1.1rem;
   }
 
   .mobile-next-game-card h3 {
-    font-size: 1.9rem;
+    font-size: 1.45rem;
     line-height: 1;
-  }
-
-  .mobile-next-game-card > * {
-    flex-shrink: 0;
-  }
-
-  .mobile-next-game-card > :nth-last-child(2) {
-    margin-top: auto;
   }
 }
