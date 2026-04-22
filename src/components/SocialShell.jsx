@@ -950,6 +950,7 @@ function ReelItem({ reel }) {
 /* ─────────────────────────────── Tab: Profile ──────────────────────────── */
 
 const PROFILE_SUBTABS = ['Games', 'Highlights', 'Saved'];
+const EDITABLE_POSITIONS = ['P', 'C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF'];
 
 const POS_INTENSITY = { SS: 8, '2B': 6, CF: 4, P: 2, '1B': 1, RF: 1, C: 0, '3B': 0, LF: 0 };
 const PROFILE_FIELD_POSITIONS = [
@@ -1010,7 +1011,12 @@ const PROFILE_POSTS = [
 
 function TabProfile() {
   const [activeSubTab, setActiveSubTab] = useState('Games');
-  const me = MOCK_ME;
+  const [profile, setProfile] = useState(() => ({
+    ...MOCK_ME,
+    location: 'Gibsonton, FL',
+  }));
+  const [editingProfile, setEditingProfile] = useState(false);
+  const me = profile;
   const initials = me.name.split(' ').map(w => w[0]).join('').toUpperCase();
 
   return (
@@ -1026,7 +1032,7 @@ function TabProfile() {
           </div>
           <div className="flex-1 min-w-0">
             <h2 className="font-display text-xl font-bold text-navy leading-tight">{me.name}</h2>
-            <p className="text-sm text-muted mb-3">{me.handle} · Gibsonton, FL</p>
+            <p className="text-sm text-muted mb-3">{me.handle} · {me.location}</p>
             <div className="grid grid-cols-3 text-center divide-x divide-line border border-line rounded-xl overflow-hidden">
               {[
                 { label: 'Games', val: me.stats.games },
@@ -1056,7 +1062,11 @@ function TabProfile() {
 
         {/* Action buttons */}
         <div className="flex gap-3 mt-4">
-          <button className="flex-1 font-display text-sm font-semibold tracking-widest uppercase border border-line text-navy px-4 py-2.5 rounded-xl hover:bg-cream transition-colors flex items-center justify-center gap-2">
+          <button
+            type="button"
+            onClick={() => setEditingProfile(true)}
+            className="flex-1 font-display text-sm font-semibold tracking-widest uppercase border border-line text-navy px-4 py-2.5 rounded-xl hover:bg-cream transition-colors flex items-center justify-center gap-2"
+          >
             <IconSettings size={16} /> Edit Profile
           </button>
           <button className="flex-1 font-display text-sm font-semibold tracking-widest uppercase border border-line text-navy px-4 py-2.5 rounded-xl hover:bg-cream transition-colors flex items-center justify-center gap-2">
@@ -1064,6 +1074,17 @@ function TabProfile() {
           </button>
         </div>
       </div>
+
+      {editingProfile && (
+        <EditProfileDialog
+          profile={profile}
+          onClose={() => setEditingProfile(false)}
+          onSave={nextProfile => {
+            setProfile(nextProfile);
+            setEditingProfile(false);
+          }}
+        />
+      )}
 
       {/* Positions heatmap */}
       <section>
@@ -1185,6 +1206,145 @@ function TabProfile() {
           )})}
         </div>
       </section>
+    </div>
+  );
+}
+
+function EditProfileDialog({ profile, onClose, onSave }) {
+  const [draft, setDraft] = useState(() => ({
+    ...profile,
+    positions: [...profile.positions],
+  }));
+
+  function updateField(key, value) {
+    setDraft(prev => ({ ...prev, [key]: value }));
+  }
+
+  function togglePosition(pos) {
+    setDraft(prev => {
+      const selected = prev.positions.includes(pos);
+      const positions = selected
+        ? prev.positions.filter(item => item !== pos)
+        : [...prev.positions, pos].slice(0, 3);
+      return { ...prev, positions };
+    });
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const nextProfile = {
+      ...draft,
+      name: draft.name.trim() || profile.name,
+      handle: draft.handle.trim().startsWith('@')
+        ? draft.handle.trim()
+        : `@${draft.handle.trim() || 'player'}`,
+      location: draft.location.trim() || profile.location,
+      positions: draft.positions.length ? draft.positions : profile.positions,
+    };
+    onSave(nextProfile);
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/35 px-4 pb-4 pt-16 lg:items-center lg:pb-0">
+      <form onSubmit={handleSubmit} className="w-full max-w-lg overflow-hidden rounded-2xl border border-line bg-white shadow-2xl">
+        <div className="flex items-start justify-between gap-4 border-b border-line px-5 py-4">
+          <div>
+            <p className="font-display text-[11px] font-semibold tracking-widest text-red uppercase">
+              Player Profile
+            </p>
+            <h2 className="mt-1 font-display text-xl font-bold tracking-wide text-navy uppercase">
+              Edit Profile
+            </h2>
+          </div>
+          <button
+            type="button"
+            aria-label="Close profile editor"
+            onClick={onClose}
+            className="rounded-full p-1.5 text-muted transition-colors hover:bg-cream hover:text-navy"
+          >
+            <IconX size={20} />
+          </button>
+        </div>
+
+        <div className="space-y-4 px-5 py-5">
+          <label className="block">
+            <span className="mb-1.5 block font-display text-[11px] font-semibold tracking-widest text-muted uppercase">
+              Display Name
+            </span>
+            <input
+              value={draft.name}
+              onChange={event => updateField('name', event.target.value)}
+              className="w-full rounded-xl border border-line bg-white px-4 py-3 text-base text-navy outline-none transition-colors placeholder:text-muted focus:border-navy focus:ring-2 focus:ring-navy/10"
+            />
+          </label>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            <label className="block">
+              <span className="mb-1.5 block font-display text-[11px] font-semibold tracking-widest text-muted uppercase">
+                Handle
+              </span>
+              <input
+                value={draft.handle}
+                onChange={event => updateField('handle', event.target.value)}
+                className="w-full rounded-xl border border-line bg-white px-4 py-3 text-base text-navy outline-none transition-colors placeholder:text-muted focus:border-navy focus:ring-2 focus:ring-navy/10"
+              />
+            </label>
+
+            <label className="block">
+              <span className="mb-1.5 block font-display text-[11px] font-semibold tracking-widest text-muted uppercase">
+                Location
+              </span>
+              <input
+                value={draft.location}
+                onChange={event => updateField('location', event.target.value)}
+                className="w-full rounded-xl border border-line bg-white px-4 py-3 text-base text-navy outline-none transition-colors placeholder:text-muted focus:border-navy focus:ring-2 focus:ring-navy/10"
+              />
+            </label>
+          </div>
+
+          <div>
+            <span className="mb-2 block font-display text-[11px] font-semibold tracking-widest text-muted uppercase">
+              Primary Positions
+            </span>
+            <div className="grid grid-cols-5 gap-2 sm:grid-cols-9">
+              {EDITABLE_POSITIONS.map(pos => {
+                const active = draft.positions.includes(pos);
+                return (
+                  <button
+                    key={pos}
+                    type="button"
+                    onClick={() => togglePosition(pos)}
+                    className={`min-h-11 rounded-lg border font-display text-[11px] font-bold tracking-wide transition-all active:scale-95 ${
+                      active
+                        ? 'border-navy bg-navy text-white shadow-sm'
+                        : 'border-line bg-cream text-muted hover:text-navy'
+                    }`}
+                  >
+                    {pos}
+                  </button>
+                );
+              })}
+            </div>
+            <p className="mt-2 text-xs text-muted">Choose up to 3 positions.</p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-2 pt-1">
+            <button
+              type="button"
+              onClick={onClose}
+              className="rounded-xl border border-line px-4 py-3 font-display text-[11px] font-semibold tracking-widest text-navy uppercase transition-colors hover:bg-cream"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="rounded-xl bg-red px-4 py-3 font-display text-[11px] font-semibold tracking-widest text-white uppercase transition-all hover:opacity-90 active:scale-[0.98]"
+            >
+              Save Profile
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
   );
 }
@@ -1357,7 +1517,7 @@ export function SocialShell({ activeTab = 'home' }) {
         </header>
 
         {/* Tab content */}
-        <main className="mobile-safe-bottom mx-auto max-w-2xl px-3 pt-3 sm:px-4 lg:pb-8 lg:pt-4">
+        <main key={activeTab} className="page-transition mobile-safe-bottom mx-auto max-w-2xl px-3 pt-3 sm:px-4 lg:pb-8 lg:pt-4">
           {activeTab === 'home'    && <TabHome />}
           {activeTab === 'find'    && <TabFind />}
           {activeTab === 'reel'    && <TabReel />}

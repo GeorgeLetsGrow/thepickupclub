@@ -47,6 +47,21 @@ button, input, textarea, select { font: inherit; }
   display: none;
 }
 
+.page-transition {
+  animation: page-enter 180ms ease-out both;
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 767px) {
   html {
     font-size: 16px;
@@ -120,5 +135,11 @@ button, input, textarea, select { font: inherit; }
   .mobile-next-game-card h3 {
     font-size: 1.45rem;
     line-height: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition {
+    animation: none;
   }
 }

@@ -42,11 +42,18 @@ export function BottomNav({ activeKey, onTabChange }) {
 }
 
 function TabBtn({ tab, active, onTabChange }) {
-  const cls = `flex min-h-16 flex-1 flex-col items-center justify-center gap-1 pt-1 transition-colors ${active ? 'text-navy' : 'text-muted'}`;
+  const cls = `flex min-h-16 flex-1 flex-col items-center justify-center gap-1 pt-1 transition-all duration-200 active:scale-95 ${active ? 'text-navy' : 'text-muted'}`;
   const inner = (
     <>
-      <tab.Icon size={22} filled={active} />
-      <span className="font-display text-[10px] font-semibold tracking-wider uppercase">{tab.label}</span>
+      <span className={`relative flex h-9 w-12 items-center justify-center rounded-full transition-all duration-200 ${
+        active ? 'bg-navy text-white shadow-sm shadow-navy/20' : 'text-muted'
+      }`}>
+        <tab.Icon size={22} filled={active} />
+        {active && <span className="absolute -bottom-1 h-1 w-1 rounded-full bg-red" />}
+      </span>
+      <span className={`font-display text-[10px] font-semibold tracking-wider uppercase transition-colors ${
+        active ? 'text-navy' : 'text-muted'
+      }`}>{tab.label}</span>
     </>
   );
 
